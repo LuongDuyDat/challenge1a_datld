@@ -42,7 +42,7 @@ class Database
         $result = $this->find();
 
         if (!$result) {
-            die('Not found');
+            return 'fail';
         }
 
         return $result;
