@@ -2,9 +2,9 @@
 
 class Response
 {
-    static $NOTFOUND = 404;
+    const NOTFOUND = 404;
 
-    static $FORBIDDEN = 403;
+    const FORBIDDEN = 403;
 
-    static $OK = 200;
+    const OK = 200;
 }
