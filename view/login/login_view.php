@@ -12,10 +12,10 @@
     <div class="login-container">
         <h2>Login</h2>
         <form class="login-form" method="POST" >
-            <input name="username" type="text" placeholder="Username" value=<?= $_POST['username']?>>
+            <input name="username" type="text" placeholder="Username" value=<?= htmlspecialchars($_POST['username'])?>>
             <div class="error-message"><?= is_null($errors['username']) ? '' : $errors['username'] ?></div>
             <div class="password-container">
-                <input name="password" id="password" type="password" placeholder="Password" value=<?= $_POST['password']?>> 
+                <input name="password" id="password" type="password" placeholder="Password" value=<?= htmlspecialchars($_POST['password'])?>> 
                 <i class="fa fa-eye password-toggle" onclick="togglePasswordVisibility()"></i>
             </div>
             <div class="error-message"><?= is_null($errors['password']) ? '' : $errors['password'] ?></div>
