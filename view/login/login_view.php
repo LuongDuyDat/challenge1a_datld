@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login Page</title>
-    <link rel="stylesheet" href="view/login/styles.css">
+    <link rel="stylesheet" href='css/login.css'>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 <body>
@@ -12,13 +12,13 @@
     <div class="login-container">
         <h2>Login</h2>
         <form class="login-form" method="POST" >
-            <input name="username" type="text" placeholder="Username" value=<?= htmlspecialchars($_POST['username'])?>>
-            <div class="error-message"><?= is_null($errors['username']) ? '' : $errors['username'] ?></div>
+            <input name="username" type="text" placeholder="Username" value=<?= htmlspecialchars($_POST['username'] ?? '')?>>
+            <div class="error-message"><?= $errors['username'] ?? '' ?></div>
             <div class="password-container">
-                <input name="password" id="password" type="password" placeholder="Password" value=<?= htmlspecialchars($_POST['password'])?>> 
+                <input name="password" id="password" type="password" placeholder="Password" value=<?= htmlspecialchars($_POST['password'] ?? '')?>> 
                 <i class="fa fa-eye password-toggle" onclick="togglePasswordVisibility()"></i>
             </div>
-            <div class="error-message"><?= is_null($errors['password']) ? '' : $errors['password'] ?></div>
+            <div class="error-message"><?= $errors['password'] ?? ''?></div>
             <button type="submit">Login</button>
             
         </form>

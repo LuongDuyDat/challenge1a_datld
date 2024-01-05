@@ -1,9 +1,7 @@
 <?php
 
-require 'core/validator.php';
-require 'core/function.php';
-require 'model/account.php';
-require 'core/db.php';
+require base_path('core/validator.php');
+require base_path('model/account.php');
 
 session_start();
 
@@ -12,7 +10,7 @@ if (isset($_SESSION['logged']) && $_SESSION['logged'] == true) {
     die();
 }
 
-$config = require 'config.php';
+$config = require base_path('config.php');
 $db = new Database($config['database'], 'root', 'dat123');
 
 $errors = [];
@@ -39,4 +37,4 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     }
 }
 
-require './view/login/login_view.php';
+require base_path('view/login/login_view.php');

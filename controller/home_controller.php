@@ -18,4 +18,4 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     
 }
 
-require 'view/home/home_view.php';
+require base_path('view/home/home_view.php');

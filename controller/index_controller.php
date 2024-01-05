@@ -1,5 +1,4 @@
 <?php
-require 'core/function.php';
 
 session_start();
 if ($_SESSION['logged'] == true)
