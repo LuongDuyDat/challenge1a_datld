@@ -26,15 +26,18 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     if ($errors["username"] == '' && $errors["password"] == '') {
         $account = new Account($db);
+        $result = $account->select($_POST['username'], $_POST['password']);
 
-        if ($account->loginVerify($_POST['username'], $_POST['password'])) {
+        if ($result == 'fail') {
+            $errors["login"] = "Tai khoan hoac mat khau khong dung";
+        } else {
             session_start();
-            $_SESSION["logged"] = true;
+            $_SESSION["logged"] = true;         
+            $_SESSION["id"] = $result["id"];
             $_SESSION["username"] = $_POST['username'];
             $_SESSION["password"] = $_POST['password'];
+            $_SESSION["role"] = $result["role"];
             header("Location: /");
-        } else {
-            $errors["login"] = "Tai khoan hoac mat khau khong dung";
         }
     }
 }

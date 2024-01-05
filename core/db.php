@@ -20,11 +20,15 @@ class Database
 
     public function query($query, $params = [])
     {
-        $this->statement = $this->connection->prepare($query);
+        try {
+            $this->statement = $this->connection->prepare($query);
 
-        $this->statement->execute($params);
+            $this->statement->execute($params);
 
-        return $this;
+            return $this;
+        } catch (PDOException $e) {
+            dd("Failed to query");
+        }
     }
 
     public function fetchAll()
