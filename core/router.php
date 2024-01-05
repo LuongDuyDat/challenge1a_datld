@@ -42,5 +42,7 @@ class Router
                 return require $route['controller'];
             }
         }
+
+        abort();
     }
 }
