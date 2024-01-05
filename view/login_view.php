@@ -9,8 +9,10 @@
 </head>
 <body>
     <div class="text-logo">Learning Management</div>
-    <?=
-       $errors["login"] != null && $errors["login"] != '' ? "<div class='error-login'><p>". $errors['login'] . "</p></div>" : '';
+    <?php
+        if(isset($errors["login"]) && $errors["login"] != '') {
+            echo "<div class='error-login'><p>". $errors['login'] . "</p></div>";
+        }
     ?>
     <div class="login-container">
         <h2>Login</h2>

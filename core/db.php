@@ -14,6 +14,7 @@ class Database
                 PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC
             ]);
         } catch (PDOException $e) {
+            dd($e);
             die("Failed to connect Database");
         }
     }

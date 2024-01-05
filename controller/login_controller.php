@@ -11,7 +11,7 @@ if (isset($_SESSION['logged']) && $_SESSION['logged'] == true) {
 }
 
 $config = require base_path('config.php');
-$db = new Database($config['database'], 'root', 'dat123');
+$db = new Database($config['database']['dsn'], $config['database']['username'], $config['database']['password']);
 
 $errors = [];
 
