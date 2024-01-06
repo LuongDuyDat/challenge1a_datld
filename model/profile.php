@@ -47,23 +47,7 @@ class Profile
 
     public function update($id, $fullName = null, $email = null, $phone = null)
     {
-        $sql = '';
-        if ($fullName != null) {
-            $sql = $sql . 'fullName = :fullName';
-        }
-        if ($email != null) {
-            if ($fullName != null) {
-                $sql = $sql . ', ';
-            }
-            $sql = $sql . 'email = :email';
-        }
-        if ($phone != null) {
-            if ($fullName != null || $email != null) {
-                $sql = $sql . ', ';
-            }
-            $sql = $sql . 'phone = :phone';
-        }
-        $result = $this->db->query('Update from profile SET ' . $sql . ' where id = :id', [
+        $result = $this->db->query('Update profile SET fullName = :fullName, email = :email, phone = :phone where id = :id', [
             'fullName' => $fullName,
             'email' => $email,
             'phone' => $phone,

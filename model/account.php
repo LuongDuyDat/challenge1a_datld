@@ -20,6 +20,16 @@ class Account
         return $result;
     }
 
+    public function selectById($id)
+    {
+        $result = $this->db->query('Select * From account Where id = :id', [
+            'id' => $id,
+        ])->findOrFail();
+
+
+        return $result;
+    }
+
     public function add($username, $password)
     {
         $result = $this->db->query('Insert into account (username, password) values(:username, :password)', [
@@ -50,17 +60,7 @@ class Account
 
     public function update($id, $username = '', $password = '')
     {
-        $sql = '';
-        if ($username != '') {
-            $sql = $sql . 'username = :username';
-        }
-        if ($password != '') {
-            if ($username != '') {
-                $sql = $sql . ', ';
-            }
-            $sql = $sql . 'password = :password';
-        }
-        $result = $this->db->query('Update from account SET ' . $sql . ' where id = :id', [
+        $result = $this->db->query('Update account SET username = :username, password = :password where id = :id', [
             'username' => $username,
             'password' => $password,
             'id' => $id,

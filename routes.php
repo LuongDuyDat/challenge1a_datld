@@ -13,6 +13,7 @@ $router->get('/profile', base_path('controller/profile_controller.php'));
 $router->post('/login', base_path('controller/login_controller.php'));
 $router->post('/home', base_path('controller/home_controller.php'));
 $router->post('/search', base_path('controller/search_controller.php'));
+$router->post('/profile', base_path('controller/profile_controller.php'));
 
 $uri = parse_url($_SERVER['REQUEST_URI'])['path'];
 $method = $_POST['_method'] ?? $_SERVER['REQUEST_METHOD'];

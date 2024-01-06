@@ -28,7 +28,7 @@ class Database
 
             return $this;
         } catch (PDOException $e) {
-            dd("Failed to query");
+            dd($e);
         }
     }
 
