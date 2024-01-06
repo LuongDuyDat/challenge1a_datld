@@ -32,7 +32,7 @@
                     <th>Phone</th>
                 </tr>
                 <?php foreach ($users as $user): ?>
-                    <tr>
+                    <tr onclick="redirectToProfile(<?=$user['id']?>)">
                         <td><?=$user["fullName"]?></td>
                         <td><?=$user["email"]?></td>
                         <td><?=$user["phone"]?> </td>
@@ -41,5 +41,14 @@
             </table>
         </div>
     </div>
+    <script>
+        function redirectToProfile(userId) {
+            // Construct the URL with the user_id parameter
+            var profileUrl = '/profile?user_id=' + userId;
+
+            // Redirect to the profile page
+            window.location.href = profileUrl;
+        }
+    </script>
 </body>
 </html>

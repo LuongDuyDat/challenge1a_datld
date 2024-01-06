@@ -101,6 +101,18 @@
 
     <?php require base_path('view/partition/header.php') ?>
 
+    <?php 
+        if (isset($errors['username']) && $errors['username'] != '') {
+            echo "<script>
+            alert({$errors['username']}});
+            </script>";
+        } else if (isset($errors['password']) && $errors['password'] != '') {
+            echo "<script>
+            alert('{$errors['password']}');
+            </script>";
+        }
+    ?>
+
     <div class="profile-container">
         <div class="profile-image">
             <img src="assets/images/default_avatar.jpg" alt="Avatar">
