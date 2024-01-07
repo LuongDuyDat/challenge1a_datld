@@ -27,10 +27,14 @@ class Profile
         return $result;
     }
 
-    public function add($id)
+    public function add($id, $fullName = null, $email = null, $phone = null, $avatar = "assets/images/default_avatar.jpg")
     {
-        $result = $this->db->query('Insert into profile (id) values(:id)', [
+        $result = $this->db->query('Insert into profile (id, fullname, email, phone, avatar) values(:id, :fullname, :email, :phone, :avatar)', [
             'id' => $id,
+            'fullName' => $fullName,
+            'email' => $email,
+            'phone' => $phone,
+            'avatar' => $avatar,
         ]);
         
         return $result;
@@ -45,12 +49,13 @@ class Profile
         return $result;
     }
 
-    public function update($id, $fullName = null, $email = null, $phone = null)
+    public function update($id, $fullName = null, $email = null, $phone = null, $avatar = "assets/images/default_avatar.jpg")
     {
-        $result = $this->db->query('Update profile SET fullName = :fullName, email = :email, phone = :phone where id = :id', [
+        $result = $this->db->query('Update profile SET fullName = :fullName, email = :email, phone = :phone, avatar = :avatar where id = :id', [
             'fullName' => $fullName,
             'email' => $email,
             'phone' => $phone,
+            'avatar' => $avatar,
             'id' => $id,
         ]);
         

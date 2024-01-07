@@ -27,13 +27,15 @@
 
         .profile-image {
             flex: 1;
+            height: 200px;
             text-align: center;
         }
 
         .profile-image img {
             width: 100%;
             max-width: 200px;
-            height: auto;
+            height: 100%;
+            overflow: hidden;
             border-radius: 50%;
         }
 
@@ -76,6 +78,7 @@
             border: none;
             border-radius: 4px;
             cursor: pointer;
+            display: inline-block;
         }
 
         .avatar-button:hover {
@@ -95,9 +98,82 @@
             padding: 5px;
             width: 30%;
         }
+
+        .message-container {
+            max-width: 800px;
+            margin: 20px auto 50px auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .message-form {
+            margin-bottom: 20px;
+        }
+
+        .message-form textarea {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            box-sizing: border-box;
+        }
+
+        .message-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .message-item {
+            border-bottom: 1px solid #ddd;
+            padding: 10px 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .message-item p,
+        .message-item input {
+            margin: 0;
+            flex-grow: 1;
+            display: block;
+        }
+
+        .message-item input {
+            display: none;
+        }
+
+        .message-item i {
+            font-size: 18px;
+            cursor: pointer;
+            margin-left: 10px;
+        }
+
+        .message-button {
+            background-color: #4caf50;
+            color: #fff;
+            padding: 5px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        .message-button:hover {
+            background-color: #45a049;
+        }
+
+        .display-content {
+            display: contents;
+        }
+
+        .avatar-input {
+            display: none;
+        }
     </style>
 </head>
 <body>
+    
 
     <?php require base_path('view/partition/header.php') ?>
 
@@ -111,63 +187,112 @@
             alert('{$errors['password']}');
             </script>";
         }
+
+        if (isset($errors['avatar'])) {
+            echo "<script>
+            alert({$errors['avatar']}});
+            </script>";
+        }
     ?>
 
     <div class="profile-container">
         <div class="profile-image">
-            <img src="assets/images/default_avatar.jpg" alt="Avatar">
-            <?= $editable ? '<button class="avatar-button" onclick="saveProfile()">Change Avatar</button>' : '' ?>
+            <img src="<?=$profile['avatar']?>" alt="Avatar">
+            <?php if ($editable_profile) :?>
+                <form id="avatar-form" method="POST" enctype="multipart/form-data">
+                    <label for="avatar-input" class="avatar-button">Change Avatar</label>
+                    <input name="avatar" type="hidden" value="avatar">
+                    <input name="avatar-input" type="file" id="avatar-input" class="avatar-input" accept="image/*" onchange="uploadAvatar(this)">
+                </form>
+            <?php endif; ?>    
         </div>
         <div class="profile-information">
-            <?php if ($editable) : ?>
+            <?php if ($editable_profile) : ?>
                 <form id="editProfileForm" method="POST">
                     <input name="Save-profile" type="hidden">
                     <div class="edit-icon" onclick="<?="editProfile({$_SESSION['role']})"?>">
                         <i class="fas fa-edit"></i>
                     </div>
                     <div class="profile-field">
-                        <label id="label-name" style="display: none;"><i class="fas fa-user icon"></i>Full Name:</label>
+                        <label for="fullname" id="label-name" style="display: none;"><i class="fas fa-user icon"></i>Full Name:</label>
                         <span name="not-none" class="larger"><?=$profile['fullName']?></span>
-                        <input name="fullName" type="text" class="edit-mode" style="display:none" value="<?=$profile['fullName'] ?>">
+                        <input id="fullname" name="fullName" type="text" class="edit-mode" style="display:none" value="<?=$profile['fullName'] ?>">
                     </div>
                     <div class="profile-field">
-                        <label><i class="fas fa-user icon"></i>Username:</label>
+                        <label for="username"><i class="fas fa-user icon"></i>Username:</label>
                         <span name="not-none"><?=$account['username']?></span>
-                        <input name="username" type="text" class="edit-mode" style="display:none" value="<?=$account['username']?>">
+                        <input id="username" name="username" type="text" class="edit-mode" style="display:none" value="<?=$account['username']?>">
                     </div>
                     <div class="profile-field">
-                        <label><i class="fas fa-key icon"></i>Password:</label>
+                        <label for="password"><i class="fas fa-key icon"></i>Password:</label>
                         <span><?=$account['password']?></span>
-                        <input name="password" size="30" type="text" class="edit-mode" style="display:none" value="<?=$account['password']?>">
+                        <input id="password" name="password" size="30" type="text" class="edit-mode" style="display:none" value="<?=$account['password']?>">
                     </div>
 
                     <div class="profile-field">
-                        <label><i class="fas fa-envelope icon"></i>Email:</label>
+                        <label for="email"><i class="fas fa-envelope icon"></i>Email:</label>
                         <span><?=$profile['email']?></span>
-                        <input name="email" type="text" class="edit-mode" style="display:none" value="<?=$profile['email']?>">
+                        <input id="email" name="email" type="text" class="edit-mode" style="display:none" value="<?=$profile['email']?>">
                     </div>
                     <div class="profile-field">
-                        <label><i class="fas fa-phone-alt icon"></i>Phone:</label>
+                        <label for="phone"><i class="fas fa-phone-alt icon"></i>Phone:</label>
                         <span><?=$profile['phone']?></span>
-                        <input name="phone" type="text" class="edit-mode" style="display:none" value="<?=$profile['phone']?>">
+                        <input id="phone" name="phone" type="text" class="edit-mode" style="display:none" value="<?=$profile['phone']?>">
                     </div>
                 </form>
             <?php else : ?>
                 <div class="profile-field">
-                    <label for="fullname" id="label-name" style="display: none;"><i class="fas fa-user icon"></i>Full Name:</label>
+                    <p for="fullname" id="label-name" style="display: none;"><i class="fas fa-user icon"></i>Full Name:</p>
                     <span class="larger"><?=$profile['fullName']?></span>
                 </div>
 
                 <div class="profile-field">
-                    <label for="email"><i class="fas fa-envelope icon"></i>Email:</label>
+                    <p style="margin: 10px 0;"><i class="fas fa-envelope icon"></i>Email:</p>
                     <span><?=$profile['email']?></span>
                 </div>
                 <div class="profile-field">
-                    <label for="phone"><i class="fas fa-phone-alt icon"></i>Phone:</label>
+                    <p style="margin: 10px 0;"><i class="fas fa-phone-alt icon"></i>Phone:</p>
                     <span><?=$profile['phone']?></span>
                 </div>
             <?php endif ?>    
         </div>
+    </div>
+
+    <div class="message-container">
+        <h2>Messages</h2>
+
+        <!-- Message Form -->
+        <form method="POST">
+            <div class="message-form">
+                <textarea name="message-create" placeholder="Write your message..."></textarea>
+                <button class="message-button" type="submit">Submit Message</button>
+            </div>
+        </form>
+
+        <!-- Message List -->
+        <ul class="message-list">
+            <!-- Sample Message Item -->
+            <?php for ($i = 0; $i < count($messages); $i++):?>
+                <li class="message-item">
+                    <p><strong><?=$messages[$i]["sender_fullname"]?>:</strong> <?=$messages[$i]['content']?></p>
+                    <?php if ($messages[$i]['sender_id'] == $_SESSION['id']): ?>
+                        <form class="display-content" id="edit-message-form-<?=$i?>" method="POST">
+                            <input type="text" name='message-edit-content' value="<?=$messages[$i]['content']?>">
+                            <input name="message-edit-id" type="hidden" value="<?=$messages[$i]['id']?>">
+                            <i class="fas fa-edit" onclick="editMessage(this, <?=$i?>)"></i>
+                        </form>
+                    <?php endif; ?>   
+                    <?php if ($messages[$i]['sender_id'] == $_SESSION['id']): ?>
+                        <form id="delele-message-form-<?=$i?>" method="POST">
+                            <input name="message-delete-id" type="hidden" value="<?=$messages[$i]['id']?>">
+                            <i class="fas fa-trash-alt" onclick="deleteMessage(<?=$i?>)"></i>
+                        </form>
+                    <?php endif; ?>    
+                </li>
+            <?php endfor; ?>
+
+            <!-- Add more message items dynamically based on user comments -->
+        </ul>
     </div>
 
     <script>
@@ -201,6 +326,54 @@
             }
             
         }
+
+        function editMessage(icon, i) {
+            console.log(icon);
+            var messageItem = icon.closest('.message-item');
+            var messageText = messageItem.querySelector('p');
+            var messageInput = messageItem.querySelector('input');
+
+            if (icon.classList.contains('fa-edit')) {
+                icon.classList.remove('fa-edit');
+                icon.classList.add('fa-save');
+                messageText.style.display = 'none';
+                messageInput.style.display = 'block';
+                messageInput.focus();
+            } else {
+                var formId = "edit-message-form-" + i;
+                var form = document.getElementById(formId);
+
+                if (form) {
+                    form.submit();
+                }
+            }
+
+        }
+
+        function deleteMessage(i) {
+            var formId = "delele-message-form-" + i;
+            var form = document.getElementById(formId);
+
+            if (form) {
+                form.submit();
+            }
+        }
+
+        function uploadAvatar(input) {
+            const file = input.files[0];
+
+            if (file) {
+                console.log(file);
+                // Display the selected image
+                var formId = "avatar-form";
+                var form = document.getElementById(formId);
+
+                if (form) {
+                    form.submit();
+                }
+            }
+        }        
+
     </script>
 
 </body>
