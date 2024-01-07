@@ -38,8 +38,12 @@ if ($_SERVER["REQUEST_METHOD"] == 'POST') {
             $account_db->update($profile_id, $account['username'], $_POST['password']);
             $profile_db->update($profile_id, $profile['fullName'], $_POST['email'], $_POST['phone']);
         } else if ($errors["username"] == '' && $errors["password"] == ' ' && $_SESSION['role'] == Role::TEACHER){
-            $account_db->update($profile_id, $_POST['username'], $_POST['password']);
-            $profile_db->update($profile_id, $_POST['fullName'], $_POST['email'], $_POST['phone']);
+            $result = $account_db->update($profile_id, $_POST['username'], $_POST['password']);
+            if ($result == "Username already exists") {
+                $errors["username"] = $result;
+            } else {
+                $profile_db->update($profile_id, $_POST['fullName'], $_POST['email'], $_POST['phone']);
+            }
         }
     }
 
@@ -61,6 +65,16 @@ if ($_SERVER["REQUEST_METHOD"] == 'POST') {
                 $profile_db->update($profile_id, $profile['fullName'], $profile['email'], $profile['phone'], $target_file);
             };
         }
+    }
+
+    if (isset($_POST['delete'])) {
+        if (!$editable_profile) {
+            abort(403);
+        }
+
+        $account_db->deleteByID($profile_id);
+        $profile_db->deleteById($profile_id);
+        header("Location: /");
     }
 
     if (isset($_POST["message-create"]) && $_POST["message-create"] != '') {

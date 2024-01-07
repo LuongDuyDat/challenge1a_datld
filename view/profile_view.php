@@ -88,6 +88,15 @@
         .edit-icon {
             position: absolute;
             top: 20px;
+            right: 50px;
+            font-size: 20px;
+            cursor: pointer;
+            color: #555;
+        }
+
+        .delete-icon {
+            position: absolute;
+            top: 20px;
             right: 20px;
             font-size: 20px;
             cursor: pointer;
@@ -173,7 +182,6 @@
     </style>
 </head>
 <body>
-    
 
     <?php require base_path('view/partition/header.php') ?>
 
@@ -238,6 +246,12 @@
                         <label for="phone"><i class="fas fa-phone-alt icon"></i>Phone:</label>
                         <span><?=$profile['phone']?></span>
                         <input id="phone" name="phone" type="text" class="edit-mode" style="display:none" value="<?=$profile['phone']?>">
+                    </div>
+                </form>
+                <form id="deleteProfileForm" method="POST">
+                    <input type="hidden" name="delete" value="">
+                    <div class="delete-icon" onclick="<?="deleteProfile({$_SESSION['role']})"?>">
+                        <i class="fas fa-trash-alt"></i>
                     </div>
                 </form>
             <?php else : ?>
@@ -325,6 +339,13 @@
                 form.submit();
             }
             
+        }
+
+        function deleteProfile() {
+            var form = document.getElementById('deleteProfileForm');
+            if (form) {
+                form.submit();
+            }    
         }
 
         function editMessage(icon, i) {

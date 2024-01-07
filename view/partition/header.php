@@ -5,10 +5,16 @@
             <ul class="nav-items">
                 <li><a href="/home" class=<?=$heading == 'Home' ? "nav-button-on" : "nav-button"?>>Home</a></li>
                 <li><a href="/search" class=<?=$heading == 'Search' ? "nav-button-on" : "nav-button"?>>Search</a></li>
+                <?php 
+                    if (isset($_SESSION['role']) && $_SESSION['role'] == Role::TEACHER) {
+                        $style = $heading == 'Add Student' ? 'nav-button-on' : 'nav-button';
+                        echo "<li><a href='/student/add' class=$style >Add Student</a></li>";
+                    }
+                ?>    
             </ul>
         </div>
         <div class="user-avatar" id="avatar">
-            <img src="assets/images/default_avatar.jpg" alt="User Avatar" width="50" height="50">
+            <img src="/assets/images/default_avatar.jpg" alt="User Avatar" width="50" height="50">
             <div class="dropdown" id="dropdown">
                 <a href="/profile">View Profile</a>
                 <a href="/logout">Log Out</a>

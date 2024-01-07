@@ -30,11 +30,26 @@ class Account
         return $result;
     }
 
-    public function add($username, $password)
+    public function selectByUsername($username)
     {
-        $result = $this->db->query('Insert into account (username, password) values(:username, :password)', [
+        $result = $this->db->query('Select * From account Where username = :username', [
+            'username' => $username,
+        ])->findOrFail();
+
+
+        return $result;
+    }
+
+    public function add($username, $password, $role = 1)
+    {
+        if ($this->selectByUsername($username) != 'fail') {
+            return "Username already exists";
+        }
+
+        $result = $this->db->query('Insert into account (username, password, role) values(:username, :password, :role)', [
             'username' => $username,
             'password' => $password,
+            'role' => $role,
         ]);
         
         return $result;
@@ -60,6 +75,10 @@ class Account
 
     public function update($id, $username = '', $password = '')
     {
+        if ($this->selectByUsername($username) == 'fail') {
+            return "Username already exists";
+        }
+
         $result = $this->db->query('Update account SET username = :username, password = :password where id = :id', [
             'username' => $username,
             'password' => $password,

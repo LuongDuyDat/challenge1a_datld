@@ -29,7 +29,11 @@ class Profile
 
     public function add($id, $fullName = null, $email = null, $phone = null, $avatar = "assets/images/default_avatar.jpg")
     {
-        $result = $this->db->query('Insert into profile (id, fullname, email, phone, avatar) values(:id, :fullname, :email, :phone, :avatar)', [
+        if (!isset($avatar)) {
+            $avatar = "assets/images/default_avatar.jpg";
+        }
+
+        $result = $this->db->query('Insert into profile (id, fullName, email, phone, avatar) values(:id, :fullName, :email, :phone, :avatar)', [
             'id' => $id,
             'fullName' => $fullName,
             'email' => $email,
@@ -42,7 +46,7 @@ class Profile
 
     public function deleteById($id)
     {
-        $result = $this->db->query('Delete from profile where username = :id', [
+        $result = $this->db->query('Delete from profile where id = :id', [
             'id' => $id,
         ]);
         
@@ -51,6 +55,10 @@ class Profile
 
     public function update($id, $fullName = null, $email = null, $phone = null, $avatar = "assets/images/default_avatar.jpg")
     {
+        if (!isset($avatar)) {
+            $avatar = "assets/images/default_avatar.jpg";
+        }
+
         $result = $this->db->query('Update profile SET fullName = :fullName, email = :email, phone = :phone, avatar = :avatar where id = :id', [
             'fullName' => $fullName,
             'email' => $email,
