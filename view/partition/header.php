@@ -4,6 +4,7 @@
             <div class="title">Learning Management</div>
             <ul class="nav-items">
                 <li><a href="/home" class=<?=$heading == 'Home' ? "nav-button-on" : "nav-button"?>>Home</a></li>
+                <li><a href="/exercise" class=<?=$heading == 'Exercise' ? "nav-button-on" : "nav-button"?>>Exercise</a></li>
                 <li><a href="/search" class=<?=$heading == 'Search' ? "nav-button-on" : "nav-button"?>>Search</a></li>
                 <?php 
                     if (isset($_SESSION['role']) && $_SESSION['role'] == Role::TEACHER) {
