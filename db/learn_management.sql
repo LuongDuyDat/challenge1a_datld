@@ -1,8 +1,8 @@
--- MySQL dump 10.13  Distrib 8.0.35, for Linux (x86_64)
+-- MySQL dump 10.13  Distrib 8.0.31, for macos12 (x86_64)
 --
 -- Host: localhost    Database: learn_management
 -- ------------------------------------------------------
--- Server version	8.0.35-0ubuntu0.22.04.1
+-- Server version	8.0.28
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -28,7 +28,7 @@ CREATE TABLE `account` (
   `password` varchar(45) NOT NULL,
   `role` int NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=20 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -37,7 +37,7 @@ CREATE TABLE `account` (
 
 LOCK TABLES `account` WRITE;
 /*!40000 ALTER TABLE `account` DISABLE KEYS */;
-INSERT INTO `account` VALUES (1,'teacher1','123456a@A',0),(2,'teacher2','123456a@A',0),(3,'student1','123456aA',1),(4,'student2','123456a@A',1);
+INSERT INTO `account` VALUES (1,'teacher1','123456a@A',0),(2,'teacher2','123456a@A',0),(3,'student1','123456aA',1),(4,'student2','123456a@A',1),(17,'student3','123456',1);
 /*!40000 ALTER TABLE `account` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -83,7 +83,7 @@ CREATE TABLE `homework_files` (
   `name` varchar(100) NOT NULL,
   `size` int NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -92,7 +92,7 @@ CREATE TABLE `homework_files` (
 
 LOCK TABLES `homework_files` WRITE;
 /*!40000 ALTER TABLE `homework_files` DISABLE KEYS */;
-INSERT INTO `homework_files` VALUES (1,1,'assets/homework/homework.pdf','homework.pdf',116166),(2,1,'assets/homework/homework.pdf','homework.pdf',116166);
+INSERT INTO `homework_files` VALUES (1,1,'assets/homework/homework.pdf','homework.pdf',116166),(2,1,'assets/homework/homework.pdf','homework.pdf',116166),(3,2,'assets/homework/Bài tập 1 - Lương Duy Đạt - 19020039.pdf','Bài tập 1 - Lương Duy Đạt - 19020039.pdf',141346),(4,2,'assets/homework/Bài tập 1 - Lương Duy Đạt - 19020039.pdf','Bài tập 1 - Lương Duy Đạt - 19020039.pdf',141346),(5,2,'assets/homework/Bài tập 1 - Lương Duy Đạt - 19020039.pdf','Bài tập 1 - Lương Duy Đạt - 19020039.pdf',141346),(6,3,'assets/homework/Bài tập 1 - Lương Duy Đạt - 19020039.pdf','Bài tập 1 - Lương Duy Đạt - 19020039.pdf',807997);
 /*!40000 ALTER TABLE `homework_files` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -106,9 +106,9 @@ DROP TABLE IF EXISTS `homeworks`;
 CREATE TABLE `homeworks` (
   `id` int NOT NULL AUTO_INCREMENT,
   `exercise_id` int NOT NULL,
-  `student_id` varchar(45) NOT NULL,
+  `student_id` int NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -117,7 +117,7 @@ CREATE TABLE `homeworks` (
 
 LOCK TABLES `homeworks` WRITE;
 /*!40000 ALTER TABLE `homeworks` DISABLE KEYS */;
-INSERT INTO `homeworks` VALUES (1,5,'3');
+INSERT INTO `homeworks` VALUES (1,5,3),(2,5,4),(3,5,17);
 /*!40000 ALTER TABLE `homeworks` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -134,7 +134,7 @@ CREATE TABLE `messages` (
   `receiver_id` varchar(45) NOT NULL,
   `content` text NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -143,6 +143,7 @@ CREATE TABLE `messages` (
 
 LOCK TABLES `messages` WRITE;
 /*!40000 ALTER TABLE `messages` DISABLE KEYS */;
+INSERT INTO `messages` VALUES (11,1,'1','Tôi là Teacher 1!');
 /*!40000 ALTER TABLE `messages` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -169,7 +170,7 @@ CREATE TABLE `profile` (
 
 LOCK TABLES `profile` WRITE;
 /*!40000 ALTER TABLE `profile` DISABLE KEYS */;
-INSERT INTO `profile` VALUES (1,'Teacher 1','teacher1@gmail.com','0123456789','assets/images/avatar-1.png'),(2,'Teacher 2','teacher2@gmail.com','0123456788','assets/images/default_avatar.jpg'),(3,'Student 1','student1@gmail.com','0123456787','assets/images/avatar-3.jpg'),(4,'Student 2','student2@gmail.com','0123456786','assets/images/default_avatar.jpg');
+INSERT INTO `profile` VALUES (1,'Teacher 1','teacher1@gmail.com','0123456789','assets/images/avatar-1.png'),(2,'Teacher 2','teacher2@gmail.com','0123456788','assets/images/default_avatar.jpg'),(3,'Student 1','student1@gmail.com','0123456787','assets/images/avatar-3.jpg'),(4,'Student 2','student2@gmail.com','0123456786','assets/images/default_avatar.jpg'),(17,'Student 3','student3@gmail.com','0123456788','assets/images/default_avatar.jpg');
 /*!40000 ALTER TABLE `profile` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -182,4 +183,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2024-01-08 17:32:26
+-- Dump completed on 2024-01-08 22:03:32
