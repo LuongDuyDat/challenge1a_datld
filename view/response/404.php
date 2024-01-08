@@ -54,8 +54,8 @@
     <div class="h-50"> </div>
     <div class="container">
         <h1>404 - Page Not Found</h1>
-        <p>Oops! The page you are looking for might be in another castle.</p>
-        <p>Return to <a href="/">home</a>.</p>
+        <p>Oops! Trang bạn tìm kiếm không tồn tại.</p>
+        <p>Quay về <a href="/">trang chủ</a>.</p>
     </div>
 </body>
 </html>

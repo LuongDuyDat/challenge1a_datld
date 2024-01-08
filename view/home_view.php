@@ -9,6 +9,6 @@
 </head>
 <body>
     <?php require base_path("controller/partition/header_controller.php")?>
-    <h1>This is home page</h1>
+    <h1>Đây là trang chủ</h1>
 </body>
 </html>

@@ -37,8 +37,8 @@ if ($_SERVER["REQUEST_METHOD"] == 'POST') {
             abort(403);
         }
 
-        $errors["username"] = Validator::string($_POST['username'], "ten dang nhap", 6, 45);
-        $errors["password"] = Validator::string($_POST['password'], "mat khau", 6, 45);
+        $errors["username"] = Validator::string($_POST['username'], "tên đăng nhập", 6, 45);
+        $errors["password"] = Validator::string($_POST['password'], "mật khẩu", 6, 45);
 
         if ($errors["password"] == '' && $_SESSION['role'] == Role::STUDENT) {
             $account_db->update($profile_id, $account['username'], $_POST['password']);
@@ -46,7 +46,7 @@ if ($_SERVER["REQUEST_METHOD"] == 'POST') {
         } else if ($errors["username"] == '' && $errors["password"] == ' ' && $_SESSION['role'] == Role::TEACHER){
             $result = $account_db->update($profile_id, $_POST['username'], $_POST['password']);
             if ($result == "Username already exists") {
-                $errors["username"] = $result;
+                $errors["username"] = "Tài khoản đã tồn tại";
             } else {
                 $profile_db->update($profile_id, $_POST['fullName'], $_POST['email'], $_POST['phone']);
             }
@@ -59,14 +59,14 @@ if ($_SERVER["REQUEST_METHOD"] == 'POST') {
         }
 
         if ($_FILES['avatar-input']['size'] > 10000000) {
-            $errors["avatar"] = "Your file is too large";
+            $errors["avatar"] = "Tệp của bạn có dung lượng quá lớn";
         } else {
             $target_dir = "assets/images/";
             $image_file_type = strtolower(pathinfo(basename($_FILES['avatar-input']['name']),PATHINFO_EXTENSION));
             $target_file = $target_dir . "avatar-$profile_id" . ".$image_file_type";
 
             if (!move_uploaded_file($_FILES['avatar-input']["tmp_name"], $target_file) || $_FILES['avatar-input']["tmp_name"] == '') {
-                $errors["avatar"] = "Cannot upload the avatar";
+                $errors["avatar"] = "Không thể cập nhật ảnh đại diện";
             } else {
                 $profile_db->update($profile_id, $profile['fullName'], $profile['email'], $profile['phone'], $target_file);
             };

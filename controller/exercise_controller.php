@@ -33,7 +33,7 @@ if ($_SERVER["REQUEST_METHOD"] == 'POST') {
         }
 
         if ($_FILES['exercise-file']['size'] > 20000000) {
-            $errors["file"] = "Your file is too large";
+            $errors["file"] = "Tệp của bạn có dung lượng quá lớn";
         } else {
             $target_dir = "assets/exercise/";            
             $target_file = $target_dir . basename($_FILES["exercise-file"]["name"]);

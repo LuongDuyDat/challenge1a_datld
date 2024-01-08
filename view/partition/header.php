@@ -3,13 +3,13 @@
         <div class="title-and-nav">
             <div class="title">Learning Management</div>
             <ul class="nav-items">
-                <li><a href="/home" class=<?=$heading == 'Home' ? "nav-button-on" : "nav-button"?>>Home</a></li>
-                <li><a href="/exercise" class=<?=$heading == 'Exercise' ? "nav-button-on" : "nav-button"?>>Exercise</a></li>
-                <li><a href="/search" class=<?=$heading == 'Search' ? "nav-button-on" : "nav-button"?>>Search</a></li>
+                <li><a href="/home" class=<?=$heading == 'Home' ? "nav-button-on" : "nav-button"?>>Trang chủ</a></li>
+                <li><a href="/exercise" class=<?=$heading == 'Exercise' ? "nav-button-on" : "nav-button"?>>Bài tập</a></li>
+                <li><a href="/search" class=<?=$heading == 'Search' ? "nav-button-on" : "nav-button"?>>Tìm kiếm</a></li>
                 <?php 
                     if (isset($_SESSION['role']) && $_SESSION['role'] == Role::TEACHER) {
                         $style = $heading == 'Add Student' ? 'nav-button-on' : 'nav-button';
-                        echo "<li><a href='/student/add' class=$style >Add Student</a></li>";
+                        echo "<li><a href='/student/add' class=$style >Thêm sinh viên</a></li>";
                     }
                 ?>    
             </ul>
@@ -17,8 +17,8 @@
         <div class="user-avatar" id="avatar">
             <img src="../<?= $avatar ?>" alt="User Avatar" width="50" height="50">
             <div class="dropdown" id="dropdown">
-                <a href="/profile">View Profile</a>
-                <a href="/logout">Log Out</a>
+                <a href="/profile">Trang cá nhân</a>
+                <a href="/logout">Đăng xuất</a>
             </div>
         </div>
     </nav>

@@ -5,7 +5,7 @@ class Validator
     static function required($value, $item)
     {
         if (strlen($value) == 0) {
-            return "Khong chap nhan $item rong";
+            return "Không chấp nhận $item rỗng";
         }
         return "";
     }
@@ -13,7 +13,7 @@ class Validator
     static function min($value, $item, $min)
     {
         if (strlen($value) < $min) {
-            return "Yeu cau $item co it nhat $min ky tu";
+            return "Yêu cầu $item có ít nhất $min ký tự";
         }
         return "";
     }
@@ -21,7 +21,7 @@ class Validator
     static function max($value, $item, $max)
     {
         if (strlen($value) > $max) {
-            return "Yeu cau $item co nhieu nhat $max ky tu";
+            return "Yêu cầu $item có nhiều nhất $max ký tự";
         }
         return "";
     }

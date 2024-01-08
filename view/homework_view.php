@@ -116,8 +116,8 @@
     <?php require base_path("controller/partition/header_controller.php")?>
 
     <div class="container">
-        <h2 class="mb-0">Exercise: <?= $exercise['title']?></h2>
-        <p class="italic mt-5">Author: <?= $exercise['teacher_name']?></p>
+        <h2 class="mb-0">Bài tập: <?= $exercise['title']?></h2>
+        <p class="italic mt-5">Giáo viên: <?= $exercise['teacher_name']?></p>
         <div class="file-tile">
             <div class="file-info">
                 <i class="fas fa-file file-icon"></i>
@@ -129,17 +129,17 @@
             </a>
         </div>
         <?php if ($_SESSION['role'] == Role::STUDENT) : ?>
-            <h2>Submit Homework</h2>
+            <h2>Nộp bài tập</h2>
             <form method="POST" enctype="multipart/form-data">
-                <label for="file">Choose File:</label>
+                <label for="file">Chọn tệp:</label>
                 <input type="file" id="file" name="homework-file" accept=".pdf, .docx, .zip, .tar" required>
                 
-                <button type="submit"><i class="fas fa-upload"></i> Upload</button>
+                <button type="submit"><i class="fas fa-upload"></i> Nộp</button>
             </form>
         <?php endif; ?>    
         <div>
-            <h2>Homework List</h2>
             <?php if ($_SESSION['role'] == Role::STUDENT) : ?>
+                <h2>Danh sách bài tập của bạn</h2>
                 <div class="list-item">
                     <?php foreach ($homework_files as $homework_file): ?>
                         <div class="file-tile">
@@ -155,6 +155,7 @@
                     <?php endforeach; ?>
                 </div>
             <?php else : ?>
+                <h2>Danh sách bài tập của học sinh</h2>
                 <div class="list-item">
                     <?php foreach ($homeworks as $homework): ?>
                         <div class="item" onclick="redirectToStudentHomework(<?=$homework['id']?>)">

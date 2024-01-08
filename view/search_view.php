@@ -15,21 +15,21 @@
             <form method="POST">
                 <div class="search-bar">
                     <input type="hidden" name="type" value="search">
-                    <input name="search-input" class="search-input" type="text" placeholder="Search..." value=<?=$_POST['search-input'] ?? '' ?>>
+                    <input name="search-input" class="search-input" type="text" placeholder="Tìm kiếm..." value=<?=$_POST['search-input'] ?? '' ?>>
                     <i class="fa fa-search search-icon"></i>
-                    <button type="submit" class="search-button">Search</button>
+                    <button type="submit" class="search-button">Tìm kiếm</button>
                 </div>
             </form>
             <form method="POST">
                 <input type="hidden" name="type" value="search">
                 <input type="hidden" name="search-input" value="">
-                <button type="submit" class="show-all-text-button">Show all</button>
+                <button type="submit" class="show-all-text-button">Xem tất cả</button>
             </form>
             <table>
                 <tr>
-                    <th>Full Name</th>
+                    <th>Họ và tên</th>
                     <th>Email</th>
-                    <th>Phone</th>
+                    <th>Điên thoại</th>
                 </tr>
                 <?php foreach ($users as $user): ?>
                     <tr onclick="redirectToProfile(<?=$user['id']?>)">

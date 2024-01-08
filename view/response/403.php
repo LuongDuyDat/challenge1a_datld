@@ -54,8 +54,8 @@
     <div class="h-50"> </div>
     <div class="container">
         <h1>403 - Forbidden</h1>
-        <p>Access to this resource is denied. You don't have the necessary permissions to view this page.</p>
-        <p>Return to <a href="/">home</a>.</p>
+        <p>Không có quyền truy cập tài nguyên. Bạn không có quyền truy cập trang này.</p>
+        <p>Quay về <a href="/">trang chủ</a>.</p>
     </div>
 </body>
 </html>

@@ -15,16 +15,16 @@
         }
     ?>
     <div class="login-container">
-        <h2>Login</h2>
+        <h2>Đăng nhập</h2>
         <form class="login-form" method="POST" >
-            <input name="username" type="text" placeholder="Username" value=<?= htmlspecialchars($_POST['username'] ?? '')?>>
+            <input name="username" type="text" placeholder="Tên đăng nhập" value=<?= htmlspecialchars($_POST['username'] ?? '')?>>
             <div class="error-message"><?= $errors['username'] ?? '' ?></div>
             <div class="password-container">
-                <input name="password" id="password" type="password" placeholder="Password" value=<?= htmlspecialchars($_POST['password'] ?? '')?>> 
+                <input name="password" id="password" type="password" placeholder="Mật khẩu" value=<?= htmlspecialchars($_POST['password'] ?? '')?>> 
                 <i class="fa fa-eye password-toggle" onclick="togglePasswordVisibility()"></i>
             </div>
             <div class="error-message"><?= $errors['password'] ?? ''?></div>
-            <button type="submit">Login</button>
+            <button type="submit">Đăng nhập</button>
             
         </form>
     </div>

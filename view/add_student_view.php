@@ -150,7 +150,7 @@
         <div class="profile-container">
             <div class="profile-image">
                 <img id="avatar-image" src="/assets/images/default_avatar.jpg" alt="Avatar">
-                <label for="avatar-input" class="avatar-button">Change Avatar</label>
+                <label for="avatar-input" class="avatar-button">Thay ảnh đại diện</label>
                 <input name="avatar-input" type="file" id="avatar-input" class="avatar-input" accept="image/*" onchange="uploadAvatar(this)">  
             </div>
             <div class="profile-information">
@@ -158,15 +158,15 @@
                     <i class="fas fa-save"></i>
                 </div>
                 <div class="profile-field">
-                    <label for="fullname" id="label-name" ><i class="fas fa-user icon"></i>Full Name:</label>
+                    <label for="fullname" id="label-name" ><i class="fas fa-user icon"></i>Họ và tên:</label>
                     <input id="fullname" name="fullName" type="text" class="edit-mode" value="<?=$_POST['fullName'] ?? '' ?>">
                 </div>
                 <div class="profile-field">
-                    <label for="username"><i class="fas fa-user icon"></i>Username:</label>
+                    <label for="username"><i class="fas fa-user icon"></i>Tên đăng nhập:</label>
                     <input id="username" name="username" type="text" class="edit-mode" value="<?=$_POST['username'] ?? ''?>">
                 </div>
                 <div class="profile-field">
-                    <label for="password"><i class="fas fa-key icon"></i>Password:</label>
+                    <label for="password"><i class="fas fa-key icon"></i>Mật khẩu:</label>
                     <input id="password" name="password" size="30" type="text" class="edit-mode" value="<?=$_POST['password'] ?? ''?>">
                 </div>
 
@@ -175,7 +175,7 @@
                     <input id="email" name="email" type="text" class="edit-mode" value="<?=$_POST['email'] ?? ''?>">
                 </div>
                 <div class="profile-field">
-                    <label for="phone"><i class="fas fa-phone-alt icon"></i>Phone:</label>
+                    <label for="phone"><i class="fas fa-phone-alt icon"></i>Điện thoại:</label>
                     <input id="phone" name="phone" type="text" class="edit-mode" value="<?=$_POST['phone'] ?? ''?>">
                 </div>            
             </div>

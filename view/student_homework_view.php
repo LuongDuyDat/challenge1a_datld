@@ -111,10 +111,10 @@
     <?php require base_path("controller/partition/header_controller.php")?>
 
     <div class="container">
-        <h1 class="mb-0">Exercise: <?= $exercise['title']?></h2>
-        <p class="italic mt-5">Author: <?= $teacher_name?></p>
+        <h1 class="mb-0">Bài tập: <?= $exercise['title']?></h2>
+        <p class="italic mt-5">Giáo viên: <?= $teacher_name?></p>
         <div>
-            <h2><?=$student_name?>'s homeworks</h2>
+            <h2>Bài tập của <?=$student_name?></h2>
             <div class="list-item">
                 <?php foreach ($homework_files as $homework_file): ?>
                     <div class="file-tile">

@@ -33,7 +33,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         }
 
         if ($_FILES['homework-file']['size'] > 20000000) {
-            $errors["file"] = "Your file is too large";
+            $errors["file"] = "Tệp của bạn có dung lượng quá lớn";
         } else {
             $target_dir = "assets/homework/";            
             $target_file = $target_dir . basename($_FILES["homework-file"]["name"]);
@@ -43,7 +43,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             }
 
             if (!move_uploaded_file($_FILES['homework-file']["tmp_name"], $target_file) || $_FILES['homework-file']["tmp_name"] == '') {
-                $errors["file"] = "Cannot upload the avatar";
+                $errors["file"] = "Không thể đăng tệp";
             } else {
                 $find = false;
                 foreach ($homeworks as $homework) {

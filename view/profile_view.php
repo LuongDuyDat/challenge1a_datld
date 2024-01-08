@@ -208,7 +208,7 @@
             <img src="<?=$profile['avatar']?>" alt="Avatar">
             <?php if ($editable_profile) :?>
                 <form id="avatar-form" method="POST" enctype="multipart/form-data">
-                    <label for="avatar-input" class="avatar-button">Change Avatar</label>
+                    <label for="avatar-input" class="avatar-button">Thay ảnh đại diện</label>
                     <input name="avatar" type="hidden" value="avatar">
                     <input name="avatar-input" type="file" id="avatar-input" class="avatar-input" accept="image/*" onchange="uploadAvatar(this)">
                 </form>
@@ -222,17 +222,17 @@
                         <i class="fas fa-edit"></i>
                     </div>
                     <div class="profile-field">
-                        <label for="fullname" id="label-name" style="display: none;"><i class="fas fa-user icon"></i>Full Name:</label>
+                        <label for="fullname" id="label-name" style="display: none;"><i class="fas fa-user icon"></i>Họ và tên:</label>
                         <span name="not-none" class="larger"><?=$profile['fullName']?></span>
                         <input id="fullname" name="fullName" type="text" class="edit-mode" style="display:none" value="<?=$profile['fullName'] ?>">
                     </div>
                     <div class="profile-field">
-                        <label for="username"><i class="fas fa-user icon"></i>Username:</label>
+                        <label for="username"><i class="fas fa-user icon"></i>Tên đăng nhập:</label>
                         <span name="not-none"><?=$account['username']?></span>
                         <input id="username" name="username" type="text" class="edit-mode" style="display:none" value="<?=$account['username']?>">
                     </div>
                     <div class="profile-field">
-                        <label for="password"><i class="fas fa-key icon"></i>Password:</label>
+                        <label for="password"><i class="fas fa-key icon"></i>Mật khẩu:</label>
                         <span><?=$account['password']?></span>
                         <input id="password" name="password" size="30" type="text" class="edit-mode" style="display:none" value="<?=$account['password']?>">
                     </div>
@@ -243,7 +243,7 @@
                         <input id="email" name="email" type="text" class="edit-mode" style="display:none" value="<?=$profile['email']?>">
                     </div>
                     <div class="profile-field">
-                        <label for="phone"><i class="fas fa-phone-alt icon"></i>Phone:</label>
+                        <label for="phone"><i class="fas fa-phone-alt icon"></i>Điện thoại:</label>
                         <span><?=$profile['phone']?></span>
                         <input id="phone" name="phone" type="text" class="edit-mode" style="display:none" value="<?=$profile['phone']?>">
                     </div>
@@ -256,7 +256,7 @@
                 </form>
             <?php else : ?>
                 <div class="profile-field">
-                    <p for="fullname" id="label-name" style="display: none;"><i class="fas fa-user icon"></i>Full Name:</p>
+                    <p for="fullname" id="label-name" style="display: none;"><i class="fas fa-user icon"></i>Họ và tên:</p>
                     <span class="larger"><?=$profile['fullName']?></span>
                 </div>
 
@@ -265,7 +265,7 @@
                     <span><?=$profile['email']?></span>
                 </div>
                 <div class="profile-field">
-                    <p style="margin: 10px 0;"><i class="fas fa-phone-alt icon"></i>Phone:</p>
+                    <p style="margin: 10px 0;"><i class="fas fa-phone-alt icon"></i>Điện thoại:</p>
                     <span><?=$profile['phone']?></span>
                 </div>
             <?php endif ?>    
@@ -273,13 +273,13 @@
     </div>
 
     <div class="message-container">
-        <h2>Messages</h2>
+        <h2>Tin nhắn</h2>
 
         <!-- Message Form -->
         <form method="POST">
             <div class="message-form">
                 <textarea name="message-create" placeholder="Write your message..."></textarea>
-                <button class="message-button" type="submit">Submit Message</button>
+                <button class="message-button" type="submit">Gửi tin nhắn</button>
             </div>
         </form>
 

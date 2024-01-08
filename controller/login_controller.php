@@ -29,7 +29,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $result = $account->select($_POST['username'], $_POST['password']);
 
         if ($result == 'fail') {
-            $errors["login"] = "Tai khoan hoac mat khau khong dung";
+            $errors["login"] = "Tài khoản hoặc mật khẩu không đúng";
         } else {
             session_start();
             $_SESSION["logged"] = true;         

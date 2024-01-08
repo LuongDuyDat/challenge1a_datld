@@ -110,24 +110,24 @@
 
     <div class="container">
         <?php if ($_SESSION['role'] == Role::TEACHER) : ?>
-            <h1>Exercise Upload</h1>
+            <h1>Tạo bài tập</h1>
             <form id="uploadForm" method="POST" enctype="multipart/form-data">
                 <div class="mb-20">
-                    <label for="title">Exercise Title:</label>
+                    <label for="title">Tiêu đề:</label>
                     <input type="text" name="title" required>
                 </div>
                 <div class="mb-20">
-                    <label for="file">Choose File:</label>
+                    <label for="file">Chọn tệp:</label>
                     <input type="file" id="file" name="exercise-file" accept=".pdf, .docx, .zip, .tar" required>
                 </div>
                 <div class="button-container">
-                    <button type="submit"><i class="fas fa-upload"></i> Upload</button>
+                    <button type="submit"><i class="fas fa-upload"></i> Tạo</button>
                 </div>
             </form>
         <?php endif; ?>    
 
         <div id="exerciseList">
-            <h2>Exercise List</h2>
+            <h2>Danh sách bào tập</h2>
             <ul id="list">
                 <?php foreach ($exercises as $exercise) : ?>
                     <li class="list-item" onclick="redirectToSpecifyExercise(<?=$exercise['id']?>)">
@@ -136,7 +136,7 @@
                             <div class="file-name"><?=$exercise['title']?></div>
                         </div>
                             <div class="size-uploader">
-                                <div class="uploader">by <?=$exercise['teacher_name']?></div>
+                                <div class="uploader">đăng bởi <?=$exercise['teacher_name']?></div>
                         </div>
                     </li>
                 <?php endforeach; ?>
