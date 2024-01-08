@@ -133,8 +133,10 @@
                                 <i class="fas fa-file file-icon"></i>
                                 <div class="file-name"><?=$homework_file['name']?></div>
                             </div>
-                            <div class="size"><?=$homework_file['size']?></div>
-                            <i class="fas fa-download download-icon"></i>
+                            <div class="size"><?=formatBytes($homework_file['size'])?></div>
+                            <a href="/<?= $homework_file['file_path']?>" download="<?= $homework_file['name']?>">
+                                <i class="fas fa-download download-icon"></i>
+                            </a>
                         </div>
                     <?php endforeach; ?>
                 </div>
