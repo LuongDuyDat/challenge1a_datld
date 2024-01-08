@@ -4,6 +4,11 @@ $heading = 'Exercise';
 
 session_start();
 
+if (!isset($_SESSION['logged']) || !$_SESSION['logged']) {
+    header("Location: /");
+    die();
+}
+
 require base_path("model/exercise.php");
 require base_path("model/profile.php");
 
@@ -40,7 +45,7 @@ if ($_SERVER["REQUEST_METHOD"] == 'POST') {
             if (!move_uploaded_file($_FILES['exercise-file']["tmp_name"], $target_file) || $_FILES['exercise-file']["tmp_name"] == '') {
                 $errors["file"] = "Cannot upload the avatar";
             } else {
-                $exercise_db->add(basename($_FILES["exercise-file"]["name"]), $_FILES["exercise-file"]['size'], $_SESSION['id'], $target_file);
+                $exercise_db->add($_POST['title'], basename($_FILES["exercise-file"]["name"]), $_FILES["exercise-file"]['size'], $_SESSION['id'], $target_file);
             };
         }
     }

@@ -9,11 +9,10 @@ if (!isset($db)) {
 }
 
 if (!isset($profile_db)) {
-    require base_path('model/profile.php');
+    require_once base_path('model/profile.php');
 
     $profile_db = new Profile($db);
 }
-
 
 $my_profile = $profile_db->selectById($_SESSION["id"]);
 $avatar = $my_profile['avatar'];

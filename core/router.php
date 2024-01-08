@@ -37,9 +37,15 @@ class Router
     {
         foreach ($this->routes as $route)
         {
-            if ($route['uri'] == $uri && $route['method'] == $method)
-            {
-                return require $route['controller'];
+            if (strpos($route['uri'], '$') !== false) {
+                $regex = str_replace('$', '(\d+)', $route['uri']);
+                if (preg_match("#^$regex$#", $uri) && $route['method'] == $method) {
+                    return require_once $route['controller'];
+                }
+            } else {
+                if ($route['uri'] == $uri && $route['method'] == $method) {
+                    return require_once $route['controller'];
+                }
             }
         }
 

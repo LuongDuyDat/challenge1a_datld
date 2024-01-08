@@ -6,6 +6,12 @@ require base_path('model/profile.php');
 require base_path('model/message.php');
 
 session_start();
+
+if (!isset($_SESSION['logged']) || !$_SESSION['logged']) {
+    header("Location: /");
+    die();
+}
+
 $heading = '';
 $errors = [];
 

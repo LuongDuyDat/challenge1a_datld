@@ -50,6 +50,10 @@
             font-size: 20px;
         }
 
+        .list-item:hover {
+            cursor: pointer;
+        }
+
         .file-info {
             display: flex;
             flex-direction: column;  /* This should be column */
@@ -69,10 +73,6 @@
             text-align: right;
         }
 
-        .size {
-            font-size: 12px;
-        }
-
         .uploader {
             font-size: 14px;
             color: #555;
@@ -81,24 +81,48 @@
         button {
             background-color: #4CAF50;
             color: white;
-            padding: 10px;
+            padding: 10px 20px;
             border: none;
             border-radius: 5px;
             cursor: pointer;
         }
+
+        .mb-20 {
+            margin-bottom: 20px;
+        }
+
+        .button-container {
+            text-align: center;
+        }
     </style>
 </head>
 <body>
+
+    <?php 
+        if (isset($errors['file']) && $errors['file'] != '') {
+            echo "<script>
+            alert({$errors['file']}});
+            </script>";
+        }
+    ?>
+
     <?php require base_path("controller/partition/header_controller.php")?>
 
     <div class="container">
         <?php if ($_SESSION['role'] == Role::TEACHER) : ?>
             <h1>Exercise Upload</h1>
             <form id="uploadForm" method="POST" enctype="multipart/form-data">
-                <label for="file">Choose File:</label>
-                <input type="file" id="file" name="exercise-file" accept=".pdf, .docx" required>
-                
-                <button type="submit"><i class="fas fa-upload"></i> Upload</button>
+                <div class="mb-20">
+                    <label for="title">Exercise Title:</label>
+                    <input type="text" name="title" required>
+                </div>
+                <div class="mb-20">
+                    <label for="file">Choose File:</label>
+                    <input type="file" id="file" name="exercise-file" accept=".pdf, .docx, .zip, .tar" required>
+                </div>
+                <div class="button-container">
+                    <button type="submit"><i class="fas fa-upload"></i> Upload</button>
+                </div>
             </form>
         <?php endif; ?>    
 
@@ -106,14 +130,13 @@
             <h2>Exercise List</h2>
             <ul id="list">
                 <?php foreach ($exercises as $exercise) : ?>
-                    <li class="list-item">
+                    <li class="list-item" onclick="redirectToSpecifyExercise(<?=$exercise['id']?>)">
                         <div>
-                            <i class="fas fa-file"></i>
-                            <div class="file-name" style="display: inline-block;"><?=$exercise['name']?></div>
+                            <i class="fas fa-tasks"></i>
+                            <div class="file-name"><?=$exercise['title']?></div>
                         </div>
                             <div class="size-uploader">
-                                <div class="size"><?=formatBytes($exercise['size'])?></div>
-                                <div class="uploader"><?=$exercise['teacher_name']?></div>
+                                <div class="uploader">by <?=$exercise['teacher_name']?></div>
                         </div>
                     </li>
                 <?php endforeach; ?>
@@ -122,7 +145,13 @@
     </div>
 
     <script>
-        
+        function redirectToSpecifyExercise(id) {
+            // Construct the URL with the user_id parameter
+            var url = '/exercise/' + id;
+
+            // Redirect to the profile page
+            window.location.href = url;
+        }
     </script>
 </body>
 </html>

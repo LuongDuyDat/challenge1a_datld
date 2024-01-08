@@ -7,7 +7,8 @@ require base_path('model/profile.php');
 session_start();
 
 if ($_SESSION['role'] != Role::TEACHER) {
-    abort(403);
+    header("Location: /");
+    die();
 }
 
 $heading = 'Add Student';

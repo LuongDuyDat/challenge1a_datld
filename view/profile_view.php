@@ -196,7 +196,7 @@
             </script>";
         }
 
-        if (isset($errors['avatar'])) {
+        if (isset($errors['avatar']) && $errors['avatar'] != '') {
             echo "<script>
             alert({$errors['avatar']}});
             </script>";
