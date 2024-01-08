@@ -8,6 +8,6 @@ return [
             'charset' => 'utf8mb4'
         ],
         'username' => 'root',
-        'password' => 'dat19020039',
+        'password' => 'dat123',
     ],
 ];

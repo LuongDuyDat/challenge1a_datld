@@ -48,7 +48,7 @@
 <body>
     <?php 
         if (isset($_SESSION['logged']) && $_SESSION['logged'] == true) {
-            require base_path("view/partition/header.php");
+            require base_path("controller/partition/header_controller.php");
         }
     ?>
     <div class="h-50"> </div>

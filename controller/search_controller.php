@@ -14,9 +14,9 @@ if (!isset($_SESSION['logged']) || $_SESSION['logged'] == false) {
 $users = [];
 $config = require base_path('config.php');
 $db = new Database($config['database']['dsn'], $config['database']['username'], $config['database']['password']);
-$profile =  new Profile($db);
+$profile_db =  new Profile($db);
 
-$users = $profile->selectAll();
+$users = $profile_db->selectAll();
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {     
     if (isset($_POST['logout']) && $_POST['logout'] == 'Logout')
@@ -28,9 +28,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     }
     if (isset($_POST['type']) && $_POST['type'] == 'search') {
         if ($_POST['search-input'] == '') {
-            $users = $profile->selectAll();
+            $users = $profile_db->selectAll();
         } else {
-            $users = $profile->search($_POST['search-input']);
+            $users = $profile_db->search($_POST['search-input']);
         }
     }
 }

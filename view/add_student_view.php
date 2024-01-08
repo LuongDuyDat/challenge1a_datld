@@ -126,7 +126,7 @@
 </head>
 <body>
 
-    <?php require base_path('view/partition/header.php') ?>
+    <?php require base_path("controller/partition/header_controller.php")?>
 
     <?php 
         if (isset($errors['username']) && $errors['username'] != '') {

@@ -15,7 +15,7 @@
             </ul>
         </div>
         <div class="user-avatar" id="avatar">
-            <img src="/assets/images/default_avatar.jpg" alt="User Avatar" width="50" height="50">
+            <img src="<?= $avatar ?>" alt="User Avatar" width="50" height="50">
             <div class="dropdown" id="dropdown">
                 <a href="/profile">View Profile</a>
                 <a href="/logout">Log Out</a>

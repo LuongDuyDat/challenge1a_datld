@@ -89,7 +89,7 @@
     </style>
 </head>
 <body>
-    <?php require base_path("view/partition/header.php")?>
+    <?php require base_path("controller/partition/header_controller.php")?>
 
     <div class="container">
         <h1>Assignment Upload</h1>
