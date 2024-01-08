@@ -102,64 +102,24 @@
     <?php require base_path("controller/partition/header_controller.php")?>
 
     <div class="container">
-        <h2>Exercise: <?= $exercise['title']?></h2>
+        <h1>Exercise: <?= $exercise['title']?></h2>
         <p class="italic">Author: <?= $exercise['teacher_name']?></p>
-        <div class="file-tile">
-            <div class="file-info">
-                <i class="fas fa-file file-icon"></i>
-                <div class="file-name"><?=$exercise['name']?></div>
-            </div>
-            <div class="size"><?=formatBytes($exercise['size'])?></div>
-            <a href="/<?= $exercise['file_path']?>" download="<?= $exercise['name']?>">
-                <i class="fas fa-download download-icon"></i>
-            </a>
-        </div>
-        <?php if ($_SESSION['role'] == Role::STUDENT) : ?>
-            <h2>Submit Homework</h2>
-            <form method="POST" enctype="multipart/form-data">
-                <label for="file">Choose File:</label>
-                <input type="file" id="file" name="homework-file" accept=".pdf, .docx, .zip, .tar" required>
-                
-                <button type="submit"><i class="fas fa-upload"></i> Upload</button>
-            </form>
-        <?php endif; ?>    
         <div>
             <h2>Homework List</h2>
-            <?php if ($_SESSION['role'] == Role::STUDENT) : ?>
-                <div class="list-item">
-                    <?php foreach ($homework_files as $homework_file): ?>
-                        <div class="file-tile">
-                            <div class="file-info">
-                                <i class="fas fa-file file-icon"></i>
-                                <div class="file-name"><?=$homework_file['name']?></div>
-                            </div>
-                            <div class="size"><?=formatBytes($homework_file['size'])?></div>
-                            <a href="/<?= $homework_file['file_path']?>" download="<?= $homework_file['name']?>">
-                                <i class="fas fa-download download-icon"></i>
-                            </a>
-                        </div>
-                    <?php endforeach; ?>
-                </div>
-            <?php else : ?>
-                <?php foreach ($homeworks as $homework): ?>
-                    <div class="list-item" onclick="redirectToStudentHomework(<?=$homework['id']?>)">
-                        <div class="homework-tile">
-                            <i class="fas fa-folder file-icon"></i>
-                            <div class="file-name"><?=$homework['studentName']?></div>
-                        </div>
+            <?php foreach ($homework_files as $homework_file): ?>
+                <div class="file-tile">
+                    <div class="file-info">
+                        <i class="fas fa-file file-icon"></i>
+                        <div class="file-name"><?=$homework_file['name']?></div>
                     </div>
-                <?php endforeach; ?>    
-            <?php endif; ?>    
+                    <div class="size"><?=formatBytes($homework_file['size'])?></div>
+                    <a href="/<?= $homework_file['file_path']?>" download="<?= $homework_file['name']?>">
+                        <i class="fas fa-download download-icon"></i>
+                    </a>
+                </div>
+            <?php endforeach; ?>
         </div>
     </div>
-
-    <script>
-        function redirectToStudentHomework(id) {
-            var url = "../homework/" + id;
-
-            window.location.href = url;
-        }
-    </script>
 
 </body>
 </html>
