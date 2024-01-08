@@ -11,6 +11,8 @@ if (!isset($_SESSION['logged']) || !$_SESSION['logged']) {
     die();
 }
 
+$heading = '';
+
 $exercise_id = explode('/', $_SERVER['REQUEST_URI'])[2];
 $config = require base_path('config.php');
 $db = new Database($config['database']['dsn'], $config['database']['username'], $config['database']['password']);

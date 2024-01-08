@@ -39,9 +39,11 @@ if ($_SERVER["REQUEST_METHOD"] == 'POST') {
 
             } else {
                 $account = $account_db->select($_POST['username'], $_POST['password']);
-                $target_dir = "assets/images/";
-                $image_file_type = strtolower(pathinfo(basename($_FILES['avatar-input']['name']),PATHINFO_EXTENSION));
-                $target_file = $target_dir . "avatar-{$account['id']}" . ".$image_file_type";
+                if ($_FILES['avatar-input']['size'] != 0) {
+                    $target_dir = "assets/images/";
+                    $image_file_type = strtolower(pathinfo(basename($_FILES['avatar-input']['name']),PATHINFO_EXTENSION));
+                    $target_file = $target_dir . "avatar-{$account['id']}" . ".$image_file_type";
+                }
 
                 move_uploaded_file($_FILES['avatar-input']["tmp_name"], $target_file);
                 $profile_db->add($account["id"], $_POST['fullName'], $_POST['email'], $_POST['phone'], $target_file ?? null);

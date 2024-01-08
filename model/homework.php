@@ -9,6 +9,16 @@ class Homework
         $this->db = $db;
     }
 
+    public function selectByID($id)
+    {
+        $result = $this->db->query('Select * From homeworks where id = :id;', [
+            'id' => $id,
+        ])->findOrFail();
+
+
+        return $result;
+    }
+
     public function selectByExerciseID($id)
     {
         $result = $this->db->query('Select * From homeworks where exercise_id = :id;', [

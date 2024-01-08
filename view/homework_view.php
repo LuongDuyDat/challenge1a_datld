@@ -30,7 +30,7 @@
             padding: 15px 10px;
             background-color: #f4f4f4;
             border-radius: 10px;
-            margin-bottom: 10px;
+            margin-bottom: 40px;
         }
 
         .homework-tile {
@@ -85,7 +85,21 @@
 
         .list-item {
             display: flex; 
-            justify-content: space-between
+            justify-content: space-between;
+            flex-wrap: wrap;
+        }
+
+        .item {
+            display: flex; 
+            justify-content: space-between;
+        }
+
+        .mb-0 {
+            margin-bottom: 0px;
+        }
+
+        .mt-5 {
+            margin-top: 5px;
         }
     </style>
 </head>
@@ -102,8 +116,8 @@
     <?php require base_path("controller/partition/header_controller.php")?>
 
     <div class="container">
-        <h2>Exercise: <?= $exercise['title']?></h2>
-        <p class="italic">Author: <?= $exercise['teacher_name']?></p>
+        <h2 class="mb-0">Exercise: <?= $exercise['title']?></h2>
+        <p class="italic mt-5">Author: <?= $exercise['teacher_name']?></p>
         <div class="file-tile">
             <div class="file-info">
                 <i class="fas fa-file file-icon"></i>
@@ -141,14 +155,16 @@
                     <?php endforeach; ?>
                 </div>
             <?php else : ?>
-                <?php foreach ($homeworks as $homework): ?>
-                    <div class="list-item" onclick="redirectToStudentHomework(<?=$homework['id']?>)">
-                        <div class="homework-tile">
-                            <i class="fas fa-folder file-icon"></i>
-                            <div class="file-name"><?=$homework['studentName']?></div>
+                <div class="list-item">
+                    <?php foreach ($homeworks as $homework): ?>
+                        <div class="item" onclick="redirectToStudentHomework(<?=$homework['id']?>)">
+                            <div class="homework-tile">
+                                <i class="fas fa-folder file-icon"></i>
+                                <div class="file-name"><?=$homework['studentName']?></div>
+                            </div>
                         </div>
-                    </div>
-                <?php endforeach; ?>    
+                    <?php endforeach; ?>
+                </div>
             <?php endif; ?>    
         </div>
     </div>

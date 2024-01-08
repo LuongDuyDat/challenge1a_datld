@@ -30,7 +30,7 @@
             padding: 15px 10px;
             background-color: #f4f4f4;
             border-radius: 10px;
-            margin-bottom: 10px;
+            margin-bottom: 40px;
         }
 
         .homework-tile {
@@ -85,7 +85,16 @@
 
         .list-item {
             display: flex; 
-            justify-content: space-between
+            justify-content: space-between;
+            flex-wrap: wrap;
+        }
+
+        .mb-0 {
+            margin-bottom: 0px;
+        }
+
+        .mt-5 {
+            margin-top: 5px;
         }
     </style>
 </head>
@@ -102,22 +111,24 @@
     <?php require base_path("controller/partition/header_controller.php")?>
 
     <div class="container">
-        <h1>Exercise: <?= $exercise['title']?></h2>
-        <p class="italic">Author: <?= $exercise['teacher_name']?></p>
+        <h1 class="mb-0">Exercise: <?= $exercise['title']?></h2>
+        <p class="italic mt-5">Author: <?= $teacher_name?></p>
         <div>
-            <h2>Homework List</h2>
-            <?php foreach ($homework_files as $homework_file): ?>
-                <div class="file-tile">
-                    <div class="file-info">
-                        <i class="fas fa-file file-icon"></i>
-                        <div class="file-name"><?=$homework_file['name']?></div>
+            <h2><?=$student_name?>'s homeworks</h2>
+            <div class="list-item">
+                <?php foreach ($homework_files as $homework_file): ?>
+                    <div class="file-tile">
+                        <div class="file-info">
+                            <i class="fas fa-file file-icon"></i>
+                            <div class="file-name"><?=$homework_file['name']?></div>
+                        </div>
+                        <div class="size"><?=formatBytes($homework_file['size'])?></div>
+                        <a href="/<?= $homework_file['file_path']?>" download="<?= $homework_file['name']?>">
+                            <i class="fas fa-download download-icon"></i>
+                        </a>
                     </div>
-                    <div class="size"><?=formatBytes($homework_file['size'])?></div>
-                    <a href="/<?= $homework_file['file_path']?>" download="<?= $homework_file['name']?>">
-                        <i class="fas fa-download download-icon"></i>
-                    </a>
-                </div>
-            <?php endforeach; ?>
+                <?php endforeach; ?>
+            </div>
         </div>
     </div>
 
