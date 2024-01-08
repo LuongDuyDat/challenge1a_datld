@@ -28,7 +28,7 @@
             margin-bottom: 20px;
         }
 
-        #assignmentList {
+        #exerciseList {
             margin-top: 20px;
         }
 
@@ -92,60 +92,37 @@
     <?php require base_path("controller/partition/header_controller.php")?>
 
     <div class="container">
-        <h1>Assignment Upload</h1>
-        <form id="uploadForm" enctype="multipart/form-data">
-            <label for="file">Choose File:</label>
-            <input type="file" id="file" name="file" accept=".pdf, .docx" required>
-            
-            <button type="button" onclick="uploadFile()"><i class="fas fa-upload"></i> Upload</button>
-        </form>
+        <?php if ($_SESSION['role'] == Role::TEACHER) : ?>
+            <h1>Exercise Upload</h1>
+            <form id="uploadForm" method="POST" enctype="multipart/form-data">
+                <label for="file">Choose File:</label>
+                <input type="file" id="file" name="exercise-file" accept=".pdf, .docx" required>
+                
+                <button type="submit"><i class="fas fa-upload"></i> Upload</button>
+            </form>
+        <?php endif; ?>    
 
-        <div id="assignmentList">
-            <h2>Assignment List</h2>
+        <div id="exerciseList">
+            <h2>Exercise List</h2>
             <ul id="list">
-                <li class="list-item">
-                    <div>
-                        <i class="fas fa-file"></i>
-                        <div class="file-name" style="display: inline-block;">Exercise1.pdf</div>
-                    </div>
-                        <div class="size-uploader">
-                            <div class="size">10000 bytes</div>
-                            <div class="uploader">John Doe</div>
-                    </div>
-                </li>
+                <?php foreach ($exercises as $exercise) : ?>
+                    <li class="list-item">
+                        <div>
+                            <i class="fas fa-file"></i>
+                            <div class="file-name" style="display: inline-block;"><?=$exercise['name']?></div>
+                        </div>
+                            <div class="size-uploader">
+                                <div class="size"><?=formatBytes($exercise['size'])?></div>
+                                <div class="uploader"><?=$exercise['teacher_name']?></div>
+                        </div>
+                    </li>
+                <?php endforeach; ?>
             </ul>
         </div>
     </div>
 
     <script>
-        function uploadFile() {
-            const assignmentName = document.getElementById('assignmentName').value;
-            const fileInput = document.getElementById('file');
-            const file = fileInput.files[0];
-
-            if (assignmentName && file) {
-                displayAssignment(assignmentName, file);
-            } else {
-                alert('Please enter assignment name and choose a file.');
-            }
-        }
-
-        function displayAssignment(name, file) {
-            const list = document.getElementById('list');
-            const listItem = document.createElement('li');
-            listItem.className = 'list-item';
-            listItem.innerHTML = `
-                <div>
-                <i class="fas fa-file"></i>
-                <div class="file-name" style="display: inline-block;">${name}</div>
-                </div>
-                <div class="size-uploader">
-                        <div class="size">${file.size} bytes</div>
-                        <div class="uploader">John Doe</div>
-                    </div>
-            `;
-            list.appendChild(listItem);
-        }
+        
     </script>
 </body>
 </html>

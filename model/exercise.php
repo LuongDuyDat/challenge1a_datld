@@ -1,6 +1,6 @@
 <?php
 
-class Message
+class Exercise
 {
     public Database $db;
 
