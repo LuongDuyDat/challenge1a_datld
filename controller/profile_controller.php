@@ -2,7 +2,7 @@
 
 require base_path('core/validator.php');
 require base_path('model/account.php');
-require base_path('model/profile.php');
+require_once base_path('model/profile.php');
 require base_path('model/message.php');
 
 session_start();
@@ -48,13 +48,13 @@ if ($_SERVER["REQUEST_METHOD"] == 'POST') {
         //Student cannot update username and fullName
         if ($errors["password"] == '' && $_SESSION['role'] == Role::STUDENT) {
             $account_db->update($profile_id, $account['username'], $_POST['password']);
-            $profile_db->update($profile_id, $profile['fullName'], $_POST['email'], $_POST['phone']);
+            $profile_db->update($profile_id, $profile['fullName'], $_POST['email'], $_POST['phone'], $profile['avatar']);
         } else if ($errors["username"] == '' && $errors["password"] == ' ' && $_SESSION['role'] == Role::TEACHER){
             $result = $account_db->update($profile_id, $_POST['username'], $_POST['password']);
             if ($result == "Username already exists") {
                 $errors["username"] = "Tài khoản đã tồn tại";
             } else {
-                $profile_db->update($profile_id, $_POST['fullName'], $_POST['email'], $_POST['phone']);
+                $profile_db->update($profile_id, $_POST['fullName'], $_POST['email'], $_POST['phone'], $profile['avatar']);
             }
         }
     }
@@ -77,6 +77,9 @@ if ($_SERVER["REQUEST_METHOD"] == 'POST') {
             if (!move_uploaded_file($_FILES['avatar-input']["tmp_name"], $target_file) || $_FILES['avatar-input']["tmp_name"] == '') {
                 $errors["avatar"] = "Không thể cập nhật ảnh đại diện";
             } else {
+                if ($profile['avatar'] != 'assets/images/default_avatar.jpg') {
+                    unlink($profile['avatar']);
+                }
                 $profile_db->update($profile_id, $profile['fullName'], $profile['email'], $profile['phone'], $target_file);
             };
         }

@@ -2,7 +2,7 @@
 
 require base_path('core/validator.php');
 require base_path('model/account.php');
-require base_path('model/profile.php');
+require_once base_path('model/profile.php');
 
 session_start();
 

@@ -15,7 +15,7 @@
             <form method="POST">
                 <div class="search-bar">
                     <input type="hidden" name="type" value="search">
-                    <input name="search-input" class="search-input" type="text" placeholder="Tìm kiếm..." value=<?=$_POST['search-input'] ?? '' ?>>
+                    <input name="search-input" class="search-input" type="text" placeholder="Tìm kiếm..." value="<?=$_POST['search-input'] ?? '' ?>">
                     <i class="fa fa-search search-icon"></i>
                     <button type="submit" class="search-button">Tìm kiếm</button>
                 </div>
