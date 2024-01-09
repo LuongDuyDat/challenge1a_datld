@@ -16,6 +16,7 @@
         </div>
         <div class="user-avatar" id="avatar">
             <img src="../<?= $avatar ?>" alt="User Avatar" width="50" height="50">
+            <i class="fa fa-caret-down dropdown-icon fa-lg"></i>
             <div class="dropdown" id="dropdown">
                 <a href="/profile">Trang cá nhân</a>
                 <a href="/logout">Đăng xuất</a>

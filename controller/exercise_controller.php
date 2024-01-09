@@ -36,14 +36,14 @@ if ($_SERVER["REQUEST_METHOD"] == 'POST') {
             $errors["file"] = "Tệp của bạn có dung lượng quá lớn";
         } else {
             $target_dir = "assets/exercise/";            
-            $target_file = $target_dir . basename($_FILES["exercise-file"]["name"]);
+            $target_file = $target_dir . uniqueUploadFile() . basename($_FILES["exercise-file"]["name"]);
 
             if (!file_exists($target_dir)) {
                 mkdir($target_dir, 0777, true);
             }
 
             if (!move_uploaded_file($_FILES['exercise-file']["tmp_name"], $target_file) || $_FILES['exercise-file']["tmp_name"] == '') {
-                $errors["file"] = "Cannot upload the avatar";
+                $errors["file"] = "Không thể tải tệp lên hệ thống";
             } else {
                 $exercise_db->add($_POST['title'], basename($_FILES["exercise-file"]["name"]), $_FILES["exercise-file"]['size'], $_SESSION['id'], $target_file);
             };

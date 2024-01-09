@@ -78,8 +78,10 @@ if ($_SERVER["REQUEST_METHOD"] == 'POST') {
             abort(403);
         }
 
+        if ($profile['avatar'] != 'assets/images/default_avatar.jpg') {
+            unlink($profile['avatar']);
+        }
         $account_db->deleteByID($profile_id);
-        $profile_db->deleteById($profile_id);
         header("Location: /");
     }
 

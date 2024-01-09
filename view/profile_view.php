@@ -218,7 +218,7 @@
             <?php if ($editable_profile) : ?>
                 <form id="editProfileForm" method="POST">
                     <input name="Save-profile" type="hidden">
-                    <div class="edit-icon" onclick="<?="editProfile({$_SESSION['role']})"?>">
+                    <div class="edit-icon" <?=$_SESSION['role'] == Role::STUDENT ? "style='right: 20px;'" : '' ?> onclick="<?="editProfile({$_SESSION['role']})"?>">
                         <i class="fas fa-edit"></i>
                     </div>
                     <div class="profile-field">
@@ -248,12 +248,14 @@
                         <input id="phone" name="phone" type="text" class="edit-mode" style="display:none" value="<?=$profile['phone']?>">
                     </div>
                 </form>
-                <form id="deleteProfileForm" method="POST">
-                    <input type="hidden" name="delete" value="">
-                    <div class="delete-icon" onclick="<?="deleteProfile({$_SESSION['role']})"?>">
-                        <i class="fas fa-trash-alt"></i>
-                    </div>
-                </form>
+                <?php if ($_SESSION['role'] == Role::TEACHER): ?>
+                    <form id="deleteProfileForm" method="POST">
+                        <input type="hidden" name="delete" value="">
+                        <div class="delete-icon" onclick="deleteProfile()">
+                            <i class="fas fa-trash-alt"></i>
+                        </div>
+                    </form>
+                <?php endif; ?>    
             <?php else : ?>
                 <div class="profile-field">
                     <p for="fullname" id="label-name" style="display: none;"><i class="fas fa-user icon"></i>Họ và tên:</p>

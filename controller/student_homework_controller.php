@@ -24,6 +24,11 @@ $exercise_db = new Exercise($db);
 $homework_file_db = new HomeworkFile($db);
 
 $homework = $homework_db->selectByID($homework_id);
+
+if ($homework == 'fail') {
+    abort(404);
+}
+
 $student_name = $profile_db->selectById($homework['student_id'])['fullName'];
 $exercise = $exercise_db->selectByID($homework['exercise_id']);
 $teacher_name = $profile_db->selectById($exercise['teacher_id'])['fullName'];

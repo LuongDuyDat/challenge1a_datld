@@ -40,8 +40,21 @@ class Exercise
 
     public function deleteById($id)
     {
-        $result = $this->db->query('Delete from messages where id = :id', [
+        $result = $this->db->query('Delete from exercises where id = :id', [
             'id' => $id,
+        ]);
+        
+        return $result;
+    }
+
+    public function update($id, $title, $name, $size, $file_path)
+    {
+        $result = $this->db->query('Update exercises SET title = :title, name = :name, size = :size, file_path = :file_path Where id = :id', [
+            'id' => $id,
+            'title' => $title,
+            'name' => $name,
+            'size' => $size,
+            'file_path' => $file_path,
         ]);
         
         return $result;

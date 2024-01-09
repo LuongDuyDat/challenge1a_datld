@@ -19,6 +19,12 @@ $db = new Database($config['database']['dsn'], $config['database']['username'], 
 $exercise_db = new Exercise($db);
 $profile_db = new Profile($db);
 $homework_db = new Homework($db);
+$exercise = $exercise_db->selectByID($exercise_id);
+
+if ($exercise == 'fail') {
+    abort(404);
+}
+
 $homeworks = $homework_db->selectByExerciseID($exercise_id);
 
 if ($_SESSION['role'] == Role::STUDENT) {
@@ -26,7 +32,6 @@ if ($_SESSION['role'] == Role::STUDENT) {
 }
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-
     if (isset($_FILES["homework-file"]) && $_FILES["homework-file"]['size'] != 0) {
         if (!isset($_SESSION['role']) || $_SESSION['role'] != Role::STUDENT) {
             abort(403);
@@ -36,7 +41,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $errors["file"] = "Tệp của bạn có dung lượng quá lớn";
         } else {
             $target_dir = "assets/homework/";            
-            $target_file = $target_dir . basename($_FILES["homework-file"]["name"]);
+            $target_file = $target_dir . uniqueUploadFile() . basename($_FILES["homework-file"]["name"]);
 
             if (!file_exists($target_dir)) {
                 mkdir($target_dir, 0777, true);
@@ -62,6 +67,50 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 $homework_file_db->add($homework_id, $target_file, basename($_FILES["homework-file"]["name"]), $_FILES["homework-file"]['size']);
             };
         }
+    }
+
+    if (isset($_FILES["exercise-file"]) && $_FILES["exercise-file"]['size'] != 0) {
+        if (!isset($_SESSION['role']) || $_SESSION['role'] != Role::TEACHER || $_SESSION['id'] != $exercise['teacher_id']) {
+            abort(403);
+        }
+
+        if ($_FILES['exercise-file']['size'] > 20000000) {
+            $errors["file"] = "Tệp của bạn có dung lượng quá lớn";
+        } else {
+            $target_dir = "assets/exercise/";            
+            $target_file = $target_dir . uniqueUploadFile() . basename($_FILES["exercise-file"]["name"]);
+
+            if (!file_exists($target_dir)) {
+                mkdir($target_dir, 0777, true);
+            }
+
+            if (!move_uploaded_file($_FILES['exercise-file']["tmp_name"], $target_file) || $_FILES['exercise-file']["tmp_name"] == '') {
+                $errors["file"] = "Không thể tải tệp lên hệ thống";
+            } else {
+                unlink($exercise['file_path']);
+                $exercise_db->update($exercise_id, $_POST['title'], basename($_FILES["exercise-file"]["name"]), $_FILES["exercise-file"]['size'], $target_file);
+            };
+        }
+    }
+
+    if (isset($_POST['delete'])) {
+        if (!isset($_SESSION['role']) || $_SESSION['role'] != Role::TEACHER || $_SESSION['id'] != $exercise['teacher_id']) {
+            abort(403);
+        }
+
+
+        foreach ($homeworks as $homework) {
+            $homework_file_db = new HomeworkFile($db);
+            $homework_files = $homework_file_db->selectByHomeworkID($homework['id']);
+
+            foreach ($homework_files as $homework_file) {
+                unlink($homework_file['file_path']);
+            }
+        }
+
+        unlink($exercise['file_path']);
+        $exercise_db->deleteById($exercise_id);
+        header("Location: /exercise");
     }
 }
 

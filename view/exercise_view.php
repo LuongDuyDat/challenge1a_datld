@@ -127,7 +127,7 @@
         <?php endif; ?>    
 
         <div id="exerciseList">
-            <h2>Danh sách bào tập</h2>
+            <h2>Danh sách bài tập</h2>
             <ul id="list">
                 <?php foreach ($exercises as $exercise) : ?>
                     <li class="list-item" onclick="redirectToSpecifyExercise(<?=$exercise['id']?>)">
