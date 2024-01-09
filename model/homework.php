@@ -68,4 +68,13 @@ class Homework
         
         return $result;
     }
+
+    public function deleteByID($id)
+    {
+        $result = $this->db->query('Delete from homeworks where id = :id', [
+            'id' => $id,
+        ]);
+        
+        return $result;
+    }
 }

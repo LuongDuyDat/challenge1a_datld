@@ -112,6 +112,24 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $exercise_db->deleteById($exercise_id);
         header("Location: /exercise");
     }
+
+    if (isset($_POST['delete-homework-file-id'])) {
+        if (!isset($_SESSION['role']) || $_SESSION['role'] != Role::STUDENT) {
+            abort(403);
+        }
+
+        $homework_file_db = new HomeworkFile($db);
+        $homework_file = $homework_file_db->selectByID($_POST['delete-homework-file-id']);
+        unlink($homework_file['file_path']);
+        $homework_file_db->deleteByID($homework_file['id']);
+
+        $homework_id = $homework_file['homework_id'];
+
+        $homework_files = $homework_file_db->selectByHomeworkID($homework_id);
+        if (count($homework_files) == 0) {
+            $homework_db->deleteByID($homework_id);
+        }
+    }
 }
 
 $exercise = $exercise_db->selectByID($exercise_id);

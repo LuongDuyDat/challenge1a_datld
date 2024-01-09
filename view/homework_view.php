@@ -66,6 +66,12 @@
             color: #3498db;
         }
 
+        .delete-icon {
+            cursor: pointer;
+            font-size: 20px;
+            color: red;
+        }
+
         button {
             background-color: #4CAF50;
             color: white;
@@ -139,6 +145,11 @@
 
         .cancel-button {
             color: red;
+            cursor: pointer;
+        }
+
+        .ok-button {
+            color: #3498db;
             cursor: pointer;
         }
     </style>
@@ -217,20 +228,30 @@
         <?php endif; ?>    
         <div>
             <?php if ($_SESSION['role'] == Role::STUDENT) : ?>
-                <h2>Danh sách bài tập của bạn</h2>
+                <div class="title-container">
+                    <h2>Danh sách bài tập của bạn</h2>
+                    <div class="center" id="cancel">
+                        <p id="delete-homework-button" class="cancel-button" onclick="homeworkDelete(<?=count($homework_files)?>)">Xoá</p>
+                    </div>
+                </div>
                 <div class="list-item">
-                    <?php foreach ($homework_files as $homework_file): ?>
+                    <?php for ($i = 0; $i < count($homework_files); $i++): ?>
+                        <?php $homework_file = $homework_files[$i] ?>
                         <div class="file-tile">
                             <div class="file-info">
                                 <i class="fas fa-file file-icon"></i>
                                 <div class="file-name"><?=$homework_file['name']?></div>
                             </div>
                             <div class="size"><?=formatBytes($homework_file['size'])?></div>
-                            <a href="/<?= $homework_file['file_path']?>" download="<?= $homework_file['name']?>">
+                            <a id="download-form-<?=$i?>" href="/<?= $homework_file['file_path']?>" download="<?= $homework_file['name']?>">
                                 <i class="fas fa-download download-icon"></i>
                             </a>
+                            <form id="delete-form-<?=$i?>" method="POST" class="display-none" onclick="onClickDeleteIcon(<?=$i?>)">
+                                <input type="hidden" name="delete-homework-file-id" value="<?=$homework_file['id']?>">
+                                <i class="fas fa-trash-alt delete-icon"></i>
+                            </form>
                         </div>
-                    <?php endforeach; ?>
+                    <?php endfor; ?>
                 </div>
             <?php else : ?>
                 <h2>Danh sách bài tập của học sinh</h2>
@@ -278,6 +299,45 @@
 
             if (form) {
                 form.submit();
+            }
+        }
+
+        function homeworkDelete(length) {
+            var deleteHomeworkButton = document.getElementById('delete-homework-button');
+
+            if (deleteHomeworkButton) {
+                deleteHomeworkButton.innerHTML = deleteHomeworkButton.innerHTML == 'Xoá' ? 'Xong' : 'Xoá';
+
+                if (deleteHomeworkButton.classList.contains('cancel-button')) {
+                    deleteHomeworkButton.classList.remove('cancel-button');
+                    deleteHomeworkButton.classList.add('ok-button');
+                } else {
+                    deleteHomeworkButton.classList.remove('ok-button');
+                    deleteHomeworkButton.classList.add('cancel-button');
+                }
+            }
+
+            for (let i = 0; i < length; i++) {
+                var downloadForm = document.getElementById('download-form-' + i);
+                var deleteForm = document.getElementById('delete-form-' + i);
+
+                if (downloadForm && deleteForm) {
+                    if (downloadForm.classList.contains('display-none')) {
+                        downloadForm.classList.remove('display-none');
+                        deleteForm.classList.add('display-none');
+                    } else {
+                        downloadForm.classList.add('display-none');
+                        deleteForm.classList.remove('display-none');
+                    }
+                }
+            }
+        }
+
+        function onClickDeleteIcon(index) {
+            var deleteForm = document.getElementById('delete-form-' + index);
+
+            if (deleteForm) {
+                deleteForm.submit();
             }
         }
 

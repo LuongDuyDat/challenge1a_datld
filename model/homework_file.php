@@ -9,6 +9,16 @@ class HomeworkFile
         $this->db = $db;
     }
 
+    public function selectByID($id)
+    {
+        $result = $this->db->query('Select * From homework_files where id = :id;', [
+            'id' => $id,
+        ])->findOrFail();
+
+
+        return $result;
+    }
+
     public function selectByHomeworkID($id)
     {
         $result = $this->db->query('Select * From homework_files where homework_id = :id;', [
@@ -33,7 +43,7 @@ class HomeworkFile
 
     public function deleteByID($id)
     {
-        $result = $this->db->query('Delete from homeworks where id = :id', [
+        $result = $this->db->query('Delete from homework_files where id = :id', [
             'id' => $id,
         ]);
         
