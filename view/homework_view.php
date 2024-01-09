@@ -204,11 +204,13 @@
                 <form id="editForm" method="POST" enctype="multipart/form-data">
                     <div class="mb-20">
                         <label for="title">Tiêu đề:</label>
-                        <input type="text" name="title" value="<?= $exercise['title']?>" required>
+                        <input type="text" name="title" value="<?= $exercise['title']?>" required 
+                            oninvalid="this.setCustomValidity('Mời bạn điền tiêu đề ')" oninput="this.setCustomValidity('')">
                     </div>
                     <div class="mb-20">
                         <label for="file">Chọn tệp:</label>
-                        <input type="file" id="file" name="exercise-file" accept=".pdf, .docx, .zip, .tar" required>
+                        <input type="file" id="file" name="exercise-file" accept=".pdf, .docx, .zip, .tar" required
+                            oninvalid="this.setCustomValidity('Mời bạn tải tệp lên')" oninput="this.setCustomValidity('')">
                     </div>
                     <div class="button-container">
                         <button type="submit"><i class="fas fa-upload"></i> Lưu</button>
@@ -221,7 +223,8 @@
             <h2>Nộp bài tập</h2>
             <form method="POST" enctype="multipart/form-data">
                 <label for="file">Chọn tệp:</label>
-                <input type="file" id="file" name="homework-file" accept=".pdf, .docx, .zip, .tar" required>
+                <input type="file" id="file" name="homework-file" accept=".pdf, .docx, .zip, .tar" required
+                    oninvalid="this.setCustomValidity('Mời bạn tải tệp lên')" oninput="this.setCustomValidity('')">
                 
                 <button type="submit"><i class="fas fa-upload"></i> Nộp</button>
             </form>
