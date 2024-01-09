@@ -6,123 +6,7 @@
     <title>User Profile</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
     <link rel="stylesheet" href="/css/header.css">
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f4f4f4;
-            margin: 0;
-            padding: 0;
-        }
-
-        .profile-container {
-            max-width: 800px;
-            margin: 50px auto;
-            background-color: #fff;
-            padding: 20px;
-            border-radius: 8px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            display: flex;
-            position: relative;
-        }
-
-        .profile-image {
-            flex: 1;
-            height: 200px;
-            text-align: center;
-        }
-
-        .profile-image img {
-            width: 100%;
-            max-width: 200px;
-            height: 100%;
-            overflow: hidden;
-            border-radius: 50%;
-        }
-
-        .profile-information {
-            flex: 2;
-            padding-left: 20px;
-        }
-
-        .profile-field {
-            margin-bottom: 15px;
-            display: flex;
-            flex-direction: column;
-            width: 50%;
-        }
-
-        .profile-field label {
-            display: block;
-            margin-bottom: 5px;
-        }
-
-        .profile-field span {
-            display: block;
-            font-size: 16px;
-        }
-
-        .profile-field .icon {
-            margin-right: 5px;
-        }
-
-        .profile-field .larger {
-            font-size: 24px;
-            font-weight: bold;
-        }
-
-        .avatar-button {
-            margin-top: 20px;
-            background-color: #4caf50;
-            color: #fff;
-            padding: 10px;
-            border: none;
-            border-radius: 4px;
-            cursor: pointer;
-            display: inline-block;
-        }
-
-        .avatar-button:hover {
-            background-color: #45a049;
-        }
-
-        .save-icon {
-            position: absolute;
-            top: 20px;
-            right: 20px;
-            font-size: 20px;
-            cursor: pointer;
-            color: #555;
-        }
-
-        .edit-mode input {
-            padding: 5px;
-            width: 30%;
-        }
-
-        .message-container {
-            max-width: 800px;
-            margin: 20px auto 50px auto;
-            padding: 20px;
-            background-color: #fff;
-            border-radius: 8px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-        }
-
-        .message-form {
-            margin-bottom: 20px;
-        }
-
-        .message-form textarea {
-            width: 100%;
-            padding: 10px;
-            margin-bottom: 10px;
-            box-sizing: border-box;
-        }
-
-        .avatar-input {
-            display: none;
-        }
-    </style>
+    <link rel="stylesheet" href="/css/add_student.css">
 </head>
 <body>
 
@@ -159,24 +43,24 @@
                 </div>
                 <div class="profile-field">
                     <label for="fullname" id="label-name" ><i class="fas fa-user icon"></i>Họ và tên:</label>
-                    <input id="fullname" name="fullName" type="text" class="edit-mode" value="<?=$_POST['fullName'] ?? '' ?>">
+                    <input placeholder="Họ và tên" id="fullname" name="fullName" type="text" class="edit-mode" value="<?=$_POST['fullName'] ?? '' ?>">
                 </div>
                 <div class="profile-field">
                     <label for="username"><i class="fas fa-user icon"></i>Tên đăng nhập:</label>
-                    <input id="username" name="username" type="text" class="edit-mode" value="<?=$_POST['username'] ?? ''?>">
+                    <input placeholder="Tên đăng nhập" id="username" name="username" type="text" class="edit-mode" value="<?=$_POST['username'] ?? ''?>">
                 </div>
                 <div class="profile-field">
                     <label for="password"><i class="fas fa-key icon"></i>Mật khẩu:</label>
-                    <input id="password" name="password" size="30" type="text" class="edit-mode" value="<?=$_POST['password'] ?? ''?>">
+                    <input placeholder="Mật khẩu" id="password" name="password" size="30" type="text" class="edit-mode" value="<?=$_POST['password'] ?? ''?>">
                 </div>
 
                 <div class="profile-field">
                     <label for="email"><i class="fas fa-envelope icon"></i>Email:</label>
-                    <input id="email" name="email" type="text" class="edit-mode" value="<?=$_POST['email'] ?? ''?>">
+                    <input placeholder="Email" id="email" name="email" type="text" class="edit-mode" value="<?=$_POST['email'] ?? ''?>">
                 </div>
                 <div class="profile-field">
                     <label for="phone"><i class="fas fa-phone-alt icon"></i>Điện thoại:</label>
-                    <input id="phone" name="phone" type="text" class="edit-mode" value="<?=$_POST['phone'] ?? ''?>">
+                    <input placeholder="Điện thoại" id="phone" name="phone" type="text" class="edit-mode" value="<?=$_POST['phone'] ?? ''?>">
                 </div>            
             </div>
         </div>       

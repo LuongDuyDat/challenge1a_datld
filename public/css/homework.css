@@ -1,0 +1,145 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+}
+
+.container {
+    max-width: 800px;
+    margin: 50px auto;
+    padding: 20px;
+    background-color: #FFFFFF;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.file-tile {
+    max-width: 250px;
+    min-width: 300px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 10px;
+    background-color: #f4f4f4;
+    border-radius: 10px;
+    margin-bottom: 40px;
+}
+
+.homework-tile {
+    width: 220px;
+    align-items: center;
+    padding: 15px 10px;
+    background-color: #f2f6fc;
+    border-radius: 10px;
+    margin-bottom: 10px;
+    display: flex;
+}
+
+.file-info {
+    display: flex;
+    align-items: center;
+    flex-grow: 1;
+    max-width: 150px;
+}
+
+.file-icon {
+    font-size: 20px;
+    margin-right: 10px;
+}
+
+.file-name {
+    font-size: 14px;
+    overflow: hidden;
+}
+
+.download-icon {
+    cursor: pointer;
+    font-size: 20px;
+    color: #3498db;
+}
+
+.delete-icon {
+    cursor: pointer;
+    font-size: 20px;
+    color: red;
+}
+
+button {
+    background-color: #4CAF50;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.mb-20 {
+    margin-bottom: 20px;
+}
+
+.button-container {
+    text-align: center;
+}
+
+.size {
+    font-size: 12px;
+}
+
+.italic {
+    font-style: italic;
+}
+
+.list-item {
+    display: flex; 
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+.item {
+    display: flex; 
+    justify-content: space-between;
+    cursor: pointer;
+}
+
+.mb-0 {
+    margin-bottom: 0px;
+}
+
+.mt-5 {
+    margin-top: 5px;
+}
+
+.title-container {
+    display: flex;
+    justify-content: space-between;
+}
+
+.center {
+    align-self: center;
+}
+
+.ml-10 {
+    margin-left: 10px;
+}
+
+.icon {
+    font-size: 20px;
+    cursor: pointer;
+}
+
+.inline-block {
+    display: inline-block;
+}
+
+.display-none {
+    display: none;
+}
+
+.cancel-button {
+    color: red;
+    cursor: pointer;
+}
+
+.ok-button {
+    color: #3498db;
+    cursor: pointer;
+}
