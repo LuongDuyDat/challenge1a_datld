@@ -2,13 +2,7 @@
 
 require base_path('core/response.php');
 
-function authorize($condition, $status = Response::FORBIDDEN)
-{
-    if (!$condition) {
-        die($status);
-    }
-}
-
+//var_dump and die for debug purpose
 function dd($value)
 {
     echo '<pre>' , var_dump($value) , '</pre>';
@@ -16,11 +10,13 @@ function dd($value)
     die();
 }
 
+//add prefix to match current directory with root directory of web
 function base_path($path)
 {
     return BASE_PATH . $path;
 }
 
+//For page not found or authorize problems
 function abort($code = 404)
 {
     http_response_code($code);
@@ -32,6 +28,7 @@ function abort($code = 404)
     die();
 }
 
+//format size of file
 function formatBytes($size, $precision = 2)
 {
     $base = log($size, 1024);
@@ -40,6 +37,7 @@ function formatBytes($size, $precision = 2)
     return round(pow(1024, $base - floor($base)), $precision) .' '. $suffixes[floor($base)];
 }
 
+//add unique prefix for file name that upload to server
 function uniqueUploadFile() {
     return time()."-".rand(1000, 9999)."-";
 }

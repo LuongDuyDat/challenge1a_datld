@@ -18,14 +18,8 @@ $profile_db =  new Profile($db);
 
 $users = $profile_db->selectAll();
 
-if ($_SERVER['REQUEST_METHOD'] == 'POST') {     
-    if (isset($_POST['logout']) && $_POST['logout'] == 'Logout')
-    {
-        $_SESSION = array();
-        session_destroy();
-        header("Location: /");
-        die();
-    }
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+    //Search user by search input  
     if (isset($_POST['type']) && $_POST['type'] == 'search') {
         if ($_POST['search-input'] == '') {
             $users = $profile_db->selectAll();

@@ -20,12 +20,15 @@ $account_db = new Account($db);
 $profile_db = new Profile($db);
 
 if ($_SERVER["REQUEST_METHOD"] == 'POST') {
+    //Add Student Request
     if (isset($_POST["Add-student"])) {
 
+        //validate username and password
         $errors["username"] = Validator::string($_POST['username'], "tên đăng nhập", 6, 45);
         $errors["password"] = Validator::string($_POST['password'], "mật khẩu", 6, 45);
         $errors['avatar'] = '';
 
+        //validate file
         if ($_FILES['avatar-input']['size'] != 0) {
             if ($_FILES['avatar-input']['size'] > 10000000) {
                 $errors["avatar"] = "Tệp của bạn có dung lượng quá lớn";
@@ -34,6 +37,8 @@ if ($_SERVER["REQUEST_METHOD"] == 'POST') {
 
         if ($errors["username"] == '' && $errors["password"] == '' && $errors['avatar'] == ''){
             $result = $account_db->add($_POST['username'], $_POST['password']);
+
+            //check if there is username already exists in db
             if ($result == "Username already exists") {
                 $errors["username"] = "Tài khoản đã tồn tại";
 

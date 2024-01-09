@@ -1,5 +1,8 @@
 <?php
+
+//config for web
 return [
+    //db config
     'database' => [
         'dsn' => [
             'host' => 'localhost',

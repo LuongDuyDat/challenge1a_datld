@@ -6,16 +6,16 @@ class Database
 
     public function __construct($config, $username, $password)
     {
+        //Make data source name of db: localhost: localhost=locahost;port=3306;...
         $dsn = 'mysql:' . http_build_query($config, "", ";");
 
-
+        //try to connect database
         try {
             $this->connection = new PDO($dsn, $username, $password, [
                 PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC
             ]);
         } catch (PDOException $e) {
             dd($e);
-            die("Failed to connect Database");
         }
     }
 

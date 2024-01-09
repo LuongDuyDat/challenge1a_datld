@@ -4,6 +4,7 @@ require base_path('core/router.php');
 
 $router = new Router();
 
+//add route to router
 $router->get('/', base_path('controller/index_controller.php'));
 $router->get('/login', base_path('controller/login_controller.php'));
 $router->get('/home', base_path('controller/home_controller.php'));

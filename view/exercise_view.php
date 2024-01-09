@@ -109,6 +109,7 @@
     <?php require base_path("controller/partition/header_controller.php")?>
 
     <div class="container">
+        <!--Form for teacher to upload new exercise -->
         <?php if ($_SESSION['role'] == Role::TEACHER) : ?>
             <h1>Tạo bài tập</h1>
             <form id="uploadForm" method="POST" enctype="multipart/form-data">
@@ -128,6 +129,7 @@
             </form>
         <?php endif; ?>    
 
+        <!-- Exercise List -->
         <div id="exerciseList">
             <h2>Danh sách bài tập</h2>
             <ul id="list">
@@ -147,6 +149,7 @@
     </div>
 
     <script>
+        //redirect to specify exercise
         function redirectToSpecifyExercise(id) {
             // Construct the URL with the user_id parameter
             var url = '/exercise/' + id;

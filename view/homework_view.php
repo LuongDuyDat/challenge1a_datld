@@ -167,9 +167,11 @@
     <?php require base_path("controller/partition/header_controller.php")?>
 
     <div class="container">
+        <!-- Exercise Information -->
         <div id="exercise-head">
             <div class="title-container">
                 <h2 class="mb-0">Bài tập: <?= $exercise['title']?></h2>
+                <!--If user is the owner of this exercise, edit and delete button -->
                 <?php if ($_SESSION['role'] == Role::TEACHER && $_SESSION['id'] == $exercise['teacher_id']): ?>
                     <div class="center">
                         <i class="fas fa-edit icon" id="first-icon" onclick="editExercise()"></i>
@@ -193,6 +195,7 @@
             </div>
         </div>
         
+        <!--Edit exercise -->
         <?php if ($_SESSION['role'] == Role::TEACHER && $_SESSION['id'] == $exercise['teacher_id']) : ?>
             <div class="display-none" id="edit-exercise">
                 <div class="title-container">
@@ -219,6 +222,7 @@
             </div>
         <?php endif; ?>
 
+        <!-- User that is student can submit file -->
         <?php if ($_SESSION['role'] == Role::STUDENT) : ?>
             <h2>Nộp bài tập</h2>
             <form method="POST" enctype="multipart/form-data">
@@ -229,6 +233,7 @@
                 <button type="submit"><i class="fas fa-upload"></i> Nộp</button>
             </form>
         <?php endif; ?>    
+        <!-- Student User: Show list of file that student user had been submitted for this exercise -->
         <div>
             <?php if ($_SESSION['role'] == Role::STUDENT) : ?>
                 <div class="title-container">
@@ -256,7 +261,9 @@
                         </div>
                     <?php endfor; ?>
                 </div>
+
             <?php else : ?>
+                <!--Show list of student that submmited for this exercise -->
                 <h2>Danh sách bài tập của học sinh</h2>
                 <div class="list-item">
                     <?php foreach ($homeworks as $homework): ?>
@@ -273,12 +280,14 @@
     </div>
 
     <script>
+        //redirect to page that show the list filed one student had submitted
         function redirectToStudentHomework(id) {
             var url = "../homework/" + id;
 
             window.location.href = url;
         }
 
+        //click on edit button
         function editExercise() {
             var editExercise = document.getElementById('edit-exercise');
             var exerciseHead = document.getElementById('exercise-head');
@@ -297,6 +306,7 @@
 
         }
 
+        //delete exercise
         function deleteExercise() {
             var form = document.getElementById('delete-exercise');
 
@@ -305,6 +315,7 @@
             }
         }
 
+        //delete one homework file
         function homeworkDelete(length) {
             var deleteHomeworkButton = document.getElementById('delete-homework-button');
 
@@ -336,6 +347,7 @@
             }
         }
 
+        //click on delete icon on homework file tile
         function onClickDeleteIcon(index) {
             var deleteForm = document.getElementById('delete-form-' + index);
 
@@ -344,6 +356,7 @@
             }
         }
 
+        //cancel the edit exercise process
         function cancel() {
             var editExercise = document.getElementById('edit-exercise');
             var exerciseHead = document.getElementById('exercise-head');

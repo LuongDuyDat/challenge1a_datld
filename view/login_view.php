@@ -10,6 +10,7 @@
 <body>
     <div class="text-logo">Learning Management</div>
     <?php
+        //alert error message to user
         if(isset($errors["login"]) && $errors["login"] != '') {
             echo "<div class='error-login'><p>". $errors['login'] . "</p></div>";
         }
@@ -17,6 +18,7 @@
     <div class="login-container">
         <h2>Đăng nhập</h2>
         <form class="login-form" method="POST" >
+            <!--htmlspecialchars: make all input of user to literal -->
             <input name="username" type="text" placeholder="Tên đăng nhập" value=<?= htmlspecialchars($_POST['username'] ?? '')?>>
             <div class="error-message"><?= $errors['username'] ?? '' ?></div>
             <div class="password-container">
@@ -29,6 +31,8 @@
         </form>
     </div>
     <script>
+
+        //change password visible
         function togglePasswordVisibility() {
             var passwordField = document.getElementById('password');
             var passwordToggle = document.querySelector('.password-toggle');

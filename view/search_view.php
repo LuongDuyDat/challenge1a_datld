@@ -42,11 +42,10 @@
         </div>
     </div>
     <script>
+        //When onclick in table row, redirect to profile of this user
         function redirectToProfile(userId) {
-            // Construct the URL with the user_id parameter
             var profileUrl = '/profile?user_id=' + userId;
 
-            // Redirect to the profile page
             window.location.href = profileUrl;
         }
     </script>

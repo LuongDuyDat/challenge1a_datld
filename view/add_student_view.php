@@ -191,6 +191,7 @@
             }
         }
 
+        //Preview avatar
         function uploadAvatar(input) {
             const file = input.files[0];
 

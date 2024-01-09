@@ -1,9 +1,11 @@
 <?php
 
+//router for web
 class Router
 {
     protected $routes = [];
 
+    //add path to router
     public function add($uri, $controller, $method)
     {
         $this->routes[] = [
@@ -33,10 +35,12 @@ class Router
         $this->add($uri, $controller, 'DELETE');
     }
 
+    //route the request to controller
     public function route($uri, $method)
     {
         foreach ($this->routes as $route)
         {
+            //using regular expression to find route like exercise/{id}
             if (strpos($route['uri'], '$') !== false) {
                 $regex = str_replace('$', '(\d+)', $route['uri']);
                 if (preg_match("#^$regex$#", $uri) && $route['method'] == $method) {

@@ -203,7 +203,9 @@
         }
     ?>
 
+    <!--Profile container-->
     <div class="profile-container">
+        <!--Profile avatar-->
         <div class="profile-image">
             <img src="<?=$profile['avatar']?>" alt="Avatar">
             <?php if ($editable_profile) :?>
@@ -214,6 +216,7 @@
                 </form>
             <?php endif; ?>    
         </div>
+        <!--Profile information-->
         <div class="profile-information">
             <?php if ($editable_profile) : ?>
                 <form id="editProfileForm" method="POST">
@@ -287,7 +290,6 @@
 
         <!-- Message List -->
         <ul class="message-list">
-            <!-- Sample Message Item -->
             <?php for ($i = 0; $i < count($messages); $i++):?>
                 <li class="message-item">
                     <p><strong><?=$messages[$i]["sender_fullname"]?>:</strong> <?=$messages[$i]['content']?></p>
@@ -307,13 +309,15 @@
                 </li>
             <?php endfor; ?>
 
-            <!-- Add more message items dynamically based on user comments -->
         </ul>
     </div>
 
     <script>
+        //when onclick edit icon
         function editProfile(role) {
             var editModeElements = document.querySelectorAll('.edit-mode');
+
+            //make input field for profile information visible
             editModeElements.forEach(function(element) {
                 if (role == 0 || (element.getAttribute('name') != 'username' && element.getAttribute('name') != 'fullName')) {
                     element.style.display = element.style.display === 'none' ? 'block' : 'none';
@@ -327,11 +331,13 @@
                 }
             });
 
+            //Show edit input for Full Name for teacher
             if (role == 0) {
                 var lableName = document.getElementById('label-name');
                 lableName.style.display = lableName.style.display === 'none' ? 'block' : 'none';
             }
 
+            //Change edit icon to save icon
             var form = document.getElementById('editProfileForm');
             var editIcon = document.querySelector('.edit-icon i');
             if (editIcon.classList.contains('fa-edit')) {

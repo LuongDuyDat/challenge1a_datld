@@ -27,6 +27,7 @@
 
 <script>
 
+    //add listener when click to avatar
     document.addEventListener("DOMContentLoaded", function () {
         var avatar = document.getElementById("avatar");
         var dropdown = document.getElementById("dropdown");
