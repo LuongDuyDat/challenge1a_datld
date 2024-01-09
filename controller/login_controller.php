@@ -1,7 +1,7 @@
 <?php
 
-require base_path('core/validator.php');
-require base_path('model/account.php');
+require_once base_path('core/validator.php');
+require_once base_path('model/account.php');
 
 session_start();
 

@@ -46,11 +46,6 @@
     </style>
 </head>
 <body>
-    <?php 
-        if (isset($_SESSION['logged']) && $_SESSION['logged'] == true) {
-            require base_path("controller/partition/header_controller.php");
-        }
-    ?>
     <div class="h-50"> </div>
     <div class="container">
         <h1>404 - Page Not Found</h1>

@@ -11,6 +11,6 @@ return [
             'charset' => 'utf8mb4'
         ],
         'username' => 'root',
-        'password' => 'dat123',
+        'password' => 'dat19020039',
     ],
 ];

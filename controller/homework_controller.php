@@ -1,9 +1,9 @@
 <?php
 
 session_start();
-require base_path('model/exercise.php');
-require base_path('model/homework_file.php');
-require base_path('model/homework.php');
+require_once base_path('model/exercise.php');
+require_once base_path('model/homework_file.php');
+require_once base_path('model/homework.php');
 require_once base_path('model/profile.php');
 
 if (!isset($_SESSION['logged']) || !$_SESSION['logged']) {

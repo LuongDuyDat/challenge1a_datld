@@ -9,8 +9,8 @@ if (!isset($_SESSION['logged']) || !$_SESSION['logged']) {
     die();
 }
 
-require base_path("model/exercise.php");
-require base_path("model/profile.php");
+require_once base_path("model/exercise.php");
+require_once base_path("model/profile.php");
 
 $config = require base_path('config.php');
 $db = new Database($config['database']['dsn'], $config['database']['username'], $config['database']['password']);
