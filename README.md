@@ -16,4 +16,4 @@ php -S localhost:8888 -t public
 **Check out the code on GitHub**: https://github.com/LuongDuyDat/challenge1a_datld7-os.viettel.com.vn
 
 ## Live Demo 
-**Visit the live demo of this project in:** https://yearlong-bread.000webhostapp.com/ 
+**Visit the live demo of this project in:** https://yearlong-bread.000webhostapp.com
