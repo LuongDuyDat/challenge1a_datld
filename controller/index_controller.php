@@ -1,8 +1,10 @@
 <?php
 
-session_start();
+if (session_status() != PHP_SESSION_ACTIVE) {
+    session_start();
+}
 //check if the user is logged
-if ($_SESSION['logged'] == true)
+if (isset($_SESSION['logged']) && $_SESSION['logged'] == true)
 {
     header("Location: /home");
 } else {

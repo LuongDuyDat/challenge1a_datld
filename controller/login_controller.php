@@ -3,7 +3,9 @@
 require_once base_path('core/validator.php');
 require_once base_path('model/account.php');
 
-session_start();
+if (session_status() != PHP_SESSION_ACTIVE) {
+    session_start();
+}
 
 //if user logins successfully, redirect to home page
 if (isset($_SESSION['logged']) && $_SESSION['logged'] == true) {
@@ -34,7 +36,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $errors["login"] = "Tài khoản hoặc mật khẩu không đúng";
         } else {
             //login successfully. Start session and add information of user to global variable $_SESSION 
-            session_start();
             $_SESSION["logged"] = true;         
             $_SESSION["id"] = $result["id"];
             $_SESSION["username"] = $_POST['username'];

@@ -7,7 +7,9 @@ require_once base_path('model/message.php');
 require_once base_path('model/homework.php');
 require_once base_path('model/homework_file.php');
 
-session_start();
+if (session_status() != PHP_SESSION_ACTIVE) {
+    session_start();
+}
 
 //check if the user is logged
 if (!isset($_SESSION['logged']) || !$_SESSION['logged']) {

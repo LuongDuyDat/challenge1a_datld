@@ -1,6 +1,8 @@
 <?php
 
-session_start();
+if (session_status() != PHP_SESSION_ACTIVE) {
+    session_start();
+}
 
 require_once base_path("model/homework.php");
 require_once base_path("model/exercise.php");

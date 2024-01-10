@@ -53,7 +53,6 @@ class Router
             }
         }
 
-        session_start();
         abort();
     }
 }

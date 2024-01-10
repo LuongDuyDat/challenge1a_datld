@@ -4,7 +4,9 @@ require_once base_path('core/validator.php');
 require_once base_path('model/account.php');
 require_once base_path('model/profile.php');
 
-session_start();
+if (session_status() != PHP_SESSION_ACTIVE) {
+    session_start();
+}
 
 if ($_SESSION['role'] != Role::TEACHER) {
     header("Location: /");

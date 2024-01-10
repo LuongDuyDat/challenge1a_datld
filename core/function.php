@@ -21,8 +21,6 @@ function abort($code = 404)
 {
     http_response_code($code);
 
-    $heading = '';
-
     require base_path("view/response/$code.php");
 
     die();

@@ -4,7 +4,9 @@ $heading = "Search";
 
 require_once base_path('model/profile.php');
 
-session_start();
+if (session_status() != PHP_SESSION_ACTIVE) {
+    session_start();
+}
 
 if (!isset($_SESSION['logged']) || $_SESSION['logged'] == false) {
     header("Location: /");
