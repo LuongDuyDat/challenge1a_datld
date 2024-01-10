@@ -73,9 +73,9 @@ class Account
         return $result;
     }
 
-    public function update($id, $username = '', $password = '')
+    public function update($id, $username = '', $password = '', $currentUsername)
     {
-        if ($this->selectByUsername($username) == 'fail') {
+        if ($this->selectByUsername($username) != 'fail' && $username != $currentUsername) {
             return "Username already exists";
         }
 

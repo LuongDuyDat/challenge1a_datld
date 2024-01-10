@@ -51,10 +51,10 @@ if ($_SERVER["REQUEST_METHOD"] == 'POST') {
 
         //Student cannot update username and fullName
         if ($errors["password"] == '' && $_SESSION['role'] == Role::STUDENT) {
-            $account_db->update($profile_id, $account['username'], $_POST['password']);
+            $account_db->update($profile_id, $account['username'], $_POST['password'], $account['username']);
             $profile_db->update($profile_id, $profile['fullName'], $_POST['email'], $_POST['phone'], $profile['avatar']);
-        } else if ($errors["username"] == '' && $errors["password"] == ' ' && $_SESSION['role'] == Role::TEACHER){
-            $result = $account_db->update($profile_id, $_POST['username'], $_POST['password']);
+        } else if ($errors["username"] == '' && $errors["password"] == '' && $_SESSION['role'] == Role::TEACHER){
+            $result = $account_db->update($profile_id, $_POST['username'], $_POST['password'], $account['username']);
             if ($result == "Username already exists") {
                 $errors["username"] = "Tài khoản đã tồn tại";
             } else {
