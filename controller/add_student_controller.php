@@ -55,6 +55,7 @@ if ($_SERVER["REQUEST_METHOD"] == 'POST') {
                 move_uploaded_file($_FILES['avatar-input']["tmp_name"], $target_file);
                 $profile_db->add($account["id"], $_POST['fullName'], $_POST['email'], $_POST['phone'], $target_file ?? null);
                 header("Location: /");
+                die();
             }
         }
     }

@@ -42,6 +42,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $_SESSION["password"] = $_POST['password'];
             $_SESSION["role"] = $result["role"];
             header("Location: /");
+            die();
         }
     }
 }

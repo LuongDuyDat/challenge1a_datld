@@ -130,6 +130,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         unlink($exercise['file_path']);
         $exercise_db->deleteById($exercise_id);
         header("Location: /exercise");
+        die();
     }
 
     //Student delete their submitted file

@@ -7,6 +7,8 @@ if (session_status() != PHP_SESSION_ACTIVE) {
 if (isset($_SESSION['logged']) && $_SESSION['logged'] == true)
 {
     header("Location: /home");
+    die();
 } else {
     header("Location: /login");
+    die();
 }
