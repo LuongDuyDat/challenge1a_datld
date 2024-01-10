@@ -81,7 +81,7 @@ if ($_SERVER["REQUEST_METHOD"] == 'POST') {
             if (!move_uploaded_file($_FILES['avatar-input']["tmp_name"], $target_file) || $_FILES['avatar-input']["tmp_name"] == '') {
                 $errors["avatar"] = "Không thể cập nhật ảnh đại diện";
             } else {
-                if ($profile['avatar'] != 'assets/images/default_avatar.jpg') {
+                if ($profile['avatar'] != 'assets/images/default_avatar.jpg' && $target_file != $profile['avatar']) {
                     unlink($profile['avatar']);
                 }
                 $profile_db->update($profile_id, $profile['fullName'], $profile['email'], $profile['phone'], $target_file);
