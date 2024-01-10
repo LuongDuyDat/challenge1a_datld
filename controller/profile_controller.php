@@ -4,6 +4,8 @@ require_once base_path('core/validator.php');
 require_once base_path('model/account.php');
 require_once base_path('model/profile.php');
 require_once base_path('model/message.php');
+require_once base_path('model/homework.php');
+require_once base_path('model/homework_file.php');
 
 session_start();
 
@@ -91,11 +93,26 @@ if ($_SERVER["REQUEST_METHOD"] == 'POST') {
             abort(403);
         }
 
+        $homework_db = new Homework($db);
+        $homework_file_db = new HomeworkFile($db);
+        $homework_files = [];
+
+        $homeworks = $homework_db->selectByStudentID($profile['id']);
+        foreach ($homeworks as $homework) {
+            $homework_files[] = $homework_file_db->selectByHomeworkID($homework['id']);
+        }
+
+        $account_db->deleteByID($profile_id);
         //delete file on server
         if ($profile['avatar'] != 'assets/images/default_avatar.jpg') {
             unlink($profile['avatar']);
         }
-        $account_db->deleteByID($profile_id);
+
+        for ($i = 0; $i < count($homework_files); $i++) {
+            foreach ($homework_files[$i] as $homework_file) {
+                unlink($homework_file['file_path']);
+            }
+        }
         header("Location: /");
     }
 
